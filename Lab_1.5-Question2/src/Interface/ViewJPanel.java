@@ -64,12 +64,10 @@ private void dispalyProduct(Product product){
 
         jLabel2.setText("NAME");
 
-        nameTextField.setEditable(false);
         nameTextField.setBackground(new java.awt.Color(238, 255, 255));
 
         jLabel3.setText("PRICE");
 
-        priceTextField.setEditable(false);
         priceTextField.setBackground(new java.awt.Color(238, 255, 255));
         priceTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +77,6 @@ private void dispalyProduct(Product product){
 
         jLabel4.setText("AVAILABILITY NUMBER");
 
-        availNumTextField.setEditable(false);
         availNumTextField.setBackground(new java.awt.Color(238, 255, 255));
         availNumTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +86,6 @@ private void dispalyProduct(Product product){
 
         jLabel5.setText("DESCRIPTION");
 
-        DescTextField.setEditable(false);
         DescTextField.setBackground(new java.awt.Color(238, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

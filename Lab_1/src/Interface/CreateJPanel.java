@@ -19,7 +19,7 @@ public class CreateJPanel extends javax.swing.JPanel {
      * @param product
      */
    //private JTextField tfield;
-   private int size = 250;
+   //private int size = 250;
     private Product product;
     
     
