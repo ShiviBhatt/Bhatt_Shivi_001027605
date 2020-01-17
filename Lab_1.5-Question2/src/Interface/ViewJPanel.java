@@ -120,7 +120,7 @@ private void dispalyProduct(Person person){
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setText("Street Line 1");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, 20));
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, 30));
 
         viewWAStreetL1.setEditable(false);
         viewWAStreetL1.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +131,7 @@ private void dispalyProduct(Person person){
         jPanel4.add(viewWAStreetL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 190, -1));
 
         jLabel6.setText("Street Line 2");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
         viewWAStreetL2.setEditable(false);
         viewWAStreetL2.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +142,7 @@ private void dispalyProduct(Person person){
         jPanel4.add(viewWAStreetL2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 190, -1));
 
         jLabel8.setText("City");
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 20));
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 30));
 
         viewWACity.setEditable(false);
         viewWACity.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +153,7 @@ private void dispalyProduct(Person person){
         jPanel4.add(viewWACity, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 190, -1));
 
         jLabel9.setText("State");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, -1));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, 30));
 
         viewWAState.setEditable(false);
         viewWAState.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +164,7 @@ private void dispalyProduct(Person person){
         jPanel4.add(viewWAState, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 190, -1));
 
         jLabel10.setText("Country");
-        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 70, -1));
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 70, 30));
 
         viewWACountry.setEditable(false);
         viewWACountry.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +175,7 @@ private void dispalyProduct(Person person){
         jPanel4.add(viewWACountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 190, -1));
 
         jLabel11.setText("Zip Code");
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 80, -1));
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 176, 80, 30));
 
         viewWAZipCode.setEditable(false);
         viewWAZipCode.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +200,7 @@ private void dispalyProduct(Person person){
         jPanel5.add(viewLAStreetL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 190, -1));
 
         jLabel13.setText("Street Line 2");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 64, -1, -1));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 64, -1, 20));
 
         viewLAStreetL2.setEditable(false);
         viewLAStreetL2.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +211,7 @@ private void dispalyProduct(Person person){
         jPanel5.add(viewLAStreetL2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 190, -1));
 
         jLabel14.setText("City");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 20));
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 30));
 
         viewLACity.setEditable(false);
         viewLACity.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +222,7 @@ private void dispalyProduct(Person person){
         jPanel5.add(viewLACity, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 190, -1));
 
         jLabel15.setText("State");
-        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, -1));
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, 30));
 
         viewLAState.setEditable(false);
         viewLAState.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +233,7 @@ private void dispalyProduct(Person person){
         jPanel5.add(viewLAState, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 190, -1));
 
         jLabel16.setText("Country");
-        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 70, -1));
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 70, 30));
 
         viewLACountry.setEditable(false);
         viewLACountry.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +244,7 @@ private void dispalyProduct(Person person){
         jPanel5.add(viewLACountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 190, -1));
 
         jLabel17.setText("Zip Code");
-        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 80, -1));
+        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 80, 30));
 
         viewLAZipCode.setEditable(false);
         viewLAZipCode.addActionListener(new java.awt.event.ActionListener() {
@@ -258,22 +258,22 @@ private void dispalyProduct(Person person){
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel18.setText("Street Line 1");
-        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, 20));
+        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, 30));
 
         jLabel19.setText("Street Line 2");
-        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
         jLabel20.setText("City");
-        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 20));
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 30));
 
         jLabel21.setText("State");
-        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, -1));
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, 30));
 
         jLabel22.setText("Country");
-        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 70, -1));
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 70, 30));
 
         jLabel23.setText("Zip Code");
-        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 80, -1));
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 80, 30));
 
         viewHAZipCode.setEditable(false);
         viewHAZipCode.addActionListener(new java.awt.event.ActionListener() {
@@ -357,6 +357,7 @@ private void dispalyProduct(Person person){
             }
         });
 
+        viewStreetAddress.setEditable(false);
         viewStreetAddress.setColumns(20);
         viewStreetAddress.setRows(5);
         jScrollPane1.setViewportView(viewStreetAddress);
