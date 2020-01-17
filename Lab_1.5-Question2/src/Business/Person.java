@@ -22,6 +22,7 @@ import java.util.Date;
      private Address localAddress;
      private Address workAddress;
      private Address homeAddress;
+     private String streetAddress;
 
     public String getFirstName() {
         return firstName;
@@ -86,8 +87,15 @@ import java.util.Date;
     public void setHomeAddress(Address homeAddress) {
         this.homeAddress = homeAddress;
     }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
      
-    
 }
 
 

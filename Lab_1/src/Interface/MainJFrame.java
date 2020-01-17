@@ -109,6 +109,8 @@ public class MainJFrame extends javax.swing.JFrame {
         
         ViewJPanel viewPanel = new ViewJPanel(product);
         SplitPane.setRightComponent(viewPanel);
+        //MainJFrame.main(null);
+        
         
     }//GEN-LAST:event_DisplayButtonActionPerformed
 

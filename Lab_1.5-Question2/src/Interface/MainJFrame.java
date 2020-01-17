@@ -9,16 +9,16 @@ package Interface;
  *
  * @author shivibhatt
  */
-import Business.Product;
+import Business.Person;
 public class MainJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrame
      */
-    private Product product;
+    private Person person;
     public MainJFrame() {
         initComponents();
-        product = new Product();
+        person = new Person();
     }
 
     /**
@@ -100,14 +100,14 @@ public class MainJFrame extends javax.swing.JFrame {
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
         // TODO add your handling code here:
         
-        CreateJPanel createPanel = new CreateJPanel(product);
+        CreateJPanel createPanel = new CreateJPanel(person);
         SplitPane.setRightComponent(createPanel);
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void DisplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayButtonActionPerformed
         // TODO add your handling code here:
         
-        ViewJPanel viewPanel = new ViewJPanel(product);
+        ViewJPanel viewPanel = new ViewJPanel(person);
         SplitPane.setRightComponent(viewPanel);
         
     }//GEN-LAST:event_DisplayButtonActionPerformed

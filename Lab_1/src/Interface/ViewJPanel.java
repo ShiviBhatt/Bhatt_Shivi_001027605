@@ -171,13 +171,13 @@ private void dispalyProduct(Product product){
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void priceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_priceTextFieldActionPerformed
-
     private void availNumTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availNumTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_availNumTextFieldActionPerformed
+
+    private void priceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_priceTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
