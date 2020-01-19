@@ -136,7 +136,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(233, 224, 219));
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setText("Bank Name");
@@ -144,10 +144,10 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         jLabel11.setText("Balance");
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 60, 30));
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 56, -1, 20));
 
         jLabel12.setText("Routing#");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 120, -1));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         createSBankName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +160,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         jLabel13.setText(" Type");
         jLabel13.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 40, -1));
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         jLabel26.setText("Account#");
         jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 70, -1));
@@ -177,7 +177,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                 createSBalanceActionPerformed(evt);
             }
         });
-        jPanel4.add(createSBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 190, 30));
+        jPanel4.add(createSBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 190, 30));
 
         createSAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,22 +192,22 @@ public class CreateJPanel extends javax.swing.JPanel {
                 createSTypeActionPerformed(evt);
             }
         });
-        jPanel4.add(createSType, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 190, 30));
+        jPanel4.add(createSType, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 190, 30));
 
         jPanel7.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1000, 120));
 
         jPanel5.setBackground(new java.awt.Color(233, 224, 219));
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel14.setText("Bank Name");
         jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         jLabel15.setText("Balance");
-        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 70, 20));
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 56, -1, 20));
 
         jLabel16.setText("Routing#");
-        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 120, -1));
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         createCBankName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +217,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         jPanel5.add(createCBankName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 190, 30));
 
         jLabel17.setText(" Type");
-        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 90, 20));
+        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         jLabel37.setText("Account#");
         jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 70, -1));
@@ -264,10 +264,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         jLabel3.setText("Allergy 1");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
 
         jLabel4.setText("Allergy 2");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 90, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         createMedicalNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,7 +277,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         jPanel1.add(createMedicalNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 190, 30));
 
         jLabel25.setText("Allergy 3");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 80, -1));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
         createAllergy2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,14 +291,14 @@ public class CreateJPanel extends javax.swing.JPanel {
                 createAllergy1ActionPerformed(evt);
             }
         });
-        jPanel1.add(createAllergy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 190, 30));
+        jPanel1.add(createAllergy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 190, 30));
 
         createAllergy3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createAllergy3ActionPerformed(evt);
             }
         });
-        jPanel1.add(createAllergy3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 190, 30));
+        jPanel1.add(createAllergy3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 190, 30));
 
         jPanel2.setBackground(new java.awt.Color(233, 224, 219));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Demographic Information"));
@@ -325,7 +325,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         jPanel2.add(createHeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 190, 30));
 
         jLabel31.setText("Phone Number");
-        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 120, -1));
+        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         createFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,7 +395,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 56, -1, 20));
 
         jLabel8.setText("City");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 120, -1));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         createStreetLine1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -456,10 +456,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         jLabel19.setText("Blood Type");
-        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 80, 30));
+        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 56, -1, 20));
 
         jLabel20.setText("Expiry Date");
-        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 120, -1));
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         createDrLicNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -469,14 +469,14 @@ public class CreateJPanel extends javax.swing.JPanel {
         jPanel6.add(createDrLicNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 190, 30));
 
         jLabel21.setText("Issue Date");
-        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
+        jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         createIssueDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createIssueDateActionPerformed(evt);
             }
         });
-        jPanel6.add(createIssueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 190, 30));
+        jPanel6.add(createIssueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 190, 30));
 
         jLabel38.setText("Add Picture");
         jPanel6.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 80, -1));
@@ -493,7 +493,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                 createBloodTypeActionPerformed(evt);
             }
         });
-        jPanel6.add(createBloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 190, 30));
+        jPanel6.add(createBloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 190, 30));
 
         createAddPic.setIcon(new javax.swing.ImageIcon("/Users/shivibhatt/Documents/AED/GIT/Bhatt_Shivi_001027605/JavaApplication_Assignment1/Icons/icons8-add-image-16.png")); // NOI18N
         createAddPic.setText("Upload Picture");
