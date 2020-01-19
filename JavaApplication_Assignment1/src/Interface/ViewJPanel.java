@@ -65,7 +65,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         viewIssueDate.setText(person.getDriverLicense().getIssueDate());
         viewExpiryDate.setText(person.getDriverLicense().getExpiryDate());
         viewBloodType.setText(person.getDriverLicense().getBloodType());
-        //Add picture logic
+        
 
         JLabel label = new JLabel(ResizeImage(person.getDriverLicense().getImagePath()));
         imageJPanel.add(label);
@@ -346,8 +346,6 @@ public class ViewJPanel extends javax.swing.JPanel {
         jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 80, 25));
         jPanel3.add(viewMedicalRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 830, 25));
         jPanel3.add(viewAllergy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 830, 25));
-
-        viewAllergy3.setText("jLabel22");
         jPanel3.add(viewAllergy3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 830, 25));
         jPanel3.add(viewAllergy2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 830, 25));
 
