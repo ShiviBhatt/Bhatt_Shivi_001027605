@@ -13,6 +13,7 @@ import Business.Person;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class ViewJPanel extends javax.swing.JPanel {
 
@@ -84,6 +85,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         Image newImg = img.getScaledInstance(460, 280, Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
         return image;
+        
     }
 
     /**

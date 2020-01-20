@@ -636,6 +636,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             File selectedFile = fileChooser.getSelectedFile();
             imagePath = selectedFile.getAbsolutePath();
             fileNameLabel.setText(imagePath);
+            JOptionPane.showMessageDialog(null, "Driver Picture Uploaded Successfully");
         }
 
     }//GEN-LAST:event_createAddPicActionPerformed
