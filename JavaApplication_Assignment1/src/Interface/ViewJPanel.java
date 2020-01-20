@@ -13,7 +13,6 @@ import Business.Person;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class ViewJPanel extends javax.swing.JPanel {
 
