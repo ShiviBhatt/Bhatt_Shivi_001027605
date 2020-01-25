@@ -5,17 +5,44 @@
  */
 package Interface;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import Business.Person;
+import javax.swing.JLabel;
+
 /**
  *
  * @author shivibhatt
  */
+
 public class ViewJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewJPanel
+     * @param  person
      */
-    public ViewJPanel() {
+    
+    public ViewJPanel(Person person) {
         initComponents();
+         displayPerson(person);
+    }
+    private void displayPerson(Person person){
+        
+        JLabel label = new JLabel(ResizeImage(person.getAddpic()));
+        viewPicture.add(label);
+        System.out.println(" Shivi Clicks");
+        
+    }
+     
+    public ImageIcon ResizeImage(String addPic)
+    {
+        
+        System.out.print(" Shivi Clicks");
+        ImageIcon MyImage = new ImageIcon(addPic);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(680, 462, Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
     }
 
     /**
@@ -27,19 +54,41 @@ public class ViewJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        viewPicture = new javax.swing.JPanel();
+
+        jLabel1.setText("VIEW PICTURE");
+
+        viewPicture.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(viewPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(viewPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel viewPicture;
     // End of variables declaration//GEN-END:variables
 }

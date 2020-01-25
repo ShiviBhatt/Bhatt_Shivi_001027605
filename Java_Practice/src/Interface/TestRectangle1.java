@@ -3,21 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business;
+package Interface;
 
 /**
  *
  * @author shivibhatt
  */
-public class Person {
-    private String addpic;
-
-    public String getAddpic() {
-        return addpic;
-    }
-
-    public void setAddpic(String addpic) {
-        this.addpic = addpic;
-    }
+public class TestRectangle1 {
     
 }

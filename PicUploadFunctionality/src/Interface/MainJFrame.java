@@ -9,13 +9,18 @@ package Interface;
  *
  * @author shivibhatt
  */
+import Business.Person;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 public class MainJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrame
      */
+    private Person person;
     public MainJFrame() {
         initComponents();
+        person = new Person();
     }
 
     /**
@@ -69,7 +74,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(createButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ViewButton)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(642, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
@@ -78,11 +83,11 @@ public class MainJFrame extends javax.swing.JFrame {
         viewPanel.setLayout(viewPanelLayout);
         viewPanelLayout.setHorizontalGroup(
             viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGap(0, 997, Short.MAX_VALUE)
         );
         viewPanelLayout.setVerticalGroup(
             viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGap(0, 845, Short.MAX_VALUE)
         );
 
         splitPane.setRightComponent(viewPanel);
@@ -94,11 +99,22 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
+        CreateJPanel createPanel = new CreateJPanel(person);
+        JScrollPane scrollPane = new JScrollPane(createPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        //scrollPane.getVerticalScrollBar();
+        //scrollPane.getHorizontalScrollBar();
+        splitPane.setRightComponent(scrollPane);
+        
         
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void ViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewButtonActionPerformed
         // TODO add your handling code here:
+        ViewJPanel viewPanel = new ViewJPanel(person);
+        JScrollPane scrollPane = new JScrollPane(viewPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        splitPane.setRightComponent(scrollPane);
     }//GEN-LAST:event_ViewButtonActionPerformed
 
     /**

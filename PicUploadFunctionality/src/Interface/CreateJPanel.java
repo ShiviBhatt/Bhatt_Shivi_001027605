@@ -9,15 +9,26 @@ package Interface;
  *
  * @author shivibhatt
  */
+import Business.Person;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 public class CreateJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CreateJPanel
      */
-    public CreateJPanel() {
+    private String addPic;
+    private Person person;
+    public CreateJPanel(Person person) {
         initComponents();
+        this.person=person;
     }
 
+//    private void createPerson(){
+//        person.setAddpic(addPic);
+//        
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,19 +38,93 @@ public class CreateJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        uploadImage = new javax.swing.JButton();
+        txtFilename = new javax.swing.JLabel();
+        createButton = new javax.swing.JButton();
+
+        jLabel1.setText("PICTURE");
+
+        uploadImage.setText("jButton1");
+        uploadImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadImageActionPerformed(evt);
+            }
+        });
+
+        txtFilename.setText("jLabel2");
+
+        createButton.setText("jButton1");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(jLabel1)
+                        .addGap(141, 141, 141)
+                        .addComponent(uploadImage))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(txtFilename))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(277, 277, 277)
+                        .addComponent(createButton)))
+                .addContainerGap(573, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(uploadImage))
+                .addGap(73, 73, 73)
+                .addComponent(txtFilename)
+                .addGap(76, 76, 76)
+                .addComponent(createButton)
+                .addContainerGap(282, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void uploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImageActionPerformed
+        // TODO add your handling code here:
+        
+    JFileChooser image=new JFileChooser();
+    int returnVal= image.showOpenDialog(null);
+    if (returnVal == JFileChooser.APPROVE_OPTION) {
+         File f=image.getSelectedFile();
+         addPic=f.getAbsolutePath();
+    txtFilename.setText(addPic);
+        JOptionPane.showMessageDialog(null, "Image upload successful");
+    }
+       
+    
+    
+
+    }//GEN-LAST:event_uploadImageActionPerformed
+
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        // TODO add your handling code here:
+       
+        person.setAddpic(addPic);
+//        
+        JOptionPane.showMessageDialog(null, "Person Profile Created Successfully");
+    }//GEN-LAST:event_createButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel txtFilename;
+    private javax.swing.JButton uploadImage;
     // End of variables declaration//GEN-END:variables
 }

@@ -65,8 +65,6 @@ public class ViewJPanel extends javax.swing.JPanel {
         viewIssueDate.setText(person.getDriverLicense().getIssueDate());
         viewExpiryDate.setText(person.getDriverLicense().getExpiryDate());
         viewBloodType.setText(person.getDriverLicense().getBloodType());
-        
-
         JLabel label = new JLabel(ResizeImage(person.getDriverLicense().getImagePath()));
         imageJPanel.add(label);
 
