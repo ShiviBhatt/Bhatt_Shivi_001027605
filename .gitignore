@@ -14,3 +14,17 @@
 /Java_Practice/nbproject/private/
 /Lab_2/build/
 /Java_Practice/build/
+/Assignment2Part2/nbproject/private/
+/Assignment2Part2/build/
+/Assignment2_Part1/nbproject/private/
+/Assignment2_Part1/build/
+*.class
+/Lab2.5/build/
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+target/
