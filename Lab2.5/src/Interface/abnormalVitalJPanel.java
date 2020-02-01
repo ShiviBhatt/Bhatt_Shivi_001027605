@@ -41,18 +41,6 @@ public class abnormalVitalJPanel extends javax.swing.JPanel {
 
     }
     
-//    
-//    private void display(VitalSignHistory vsh){
-//    VitalSigns vs = new VitalSigns();
-//    System.out.println("Shivi clicked");
-//    
-//    
-//
-//    
-//   abnormalList= vsh.getAbnormalList(max, min);
-//        
-//        
-//    }
 
     /* Create and Display the Dialog*/
     /**

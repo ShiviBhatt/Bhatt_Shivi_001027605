@@ -16,9 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class MainJFrame extends javax.swing.JFrame {
 
-    //double defaultMax = 140;
-    //double defaultMax;
-    //double defaultMin = 70;
     /**
      * Creates new form MainJFrame
      */
