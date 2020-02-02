@@ -19,7 +19,7 @@ public class Main {
 
     Patient patient = new Patient();
     //Scanner sc = new Scanner(System.in); 
-
+private String ageGroup;
     public static void main(String args[]) {
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("                                           PEDIATRIC VITAL SIGNS FOR PATIENTS                                                                      ");
@@ -31,7 +31,7 @@ public class Main {
             //System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
             //System.out.println("                                           PEDIATRIC VITAL SIGNS FOR PATIENTS                                                                      ");
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println(" CHOOSE FROM THE MENU OPTION \n PRESS 1 FOR ADDING PATIENT DETAILS AND VITAL SIGNS \n PRESS 2 TEST VITAL SIGNS  \n PRESS 3 PATIENT VITAL SIGN DETAILS \n PRESS 4 TO EXIT \n");
+            System.out.println(" CHOOSE FROM THE MENU OPTION \n PRESS 1 TO ADD PATIENT DETAILS AND VITAL SIGNS \n PRESS 2 FOR PATIENT VITAL SIGNS TEST  \n PRESS 3 FOR PATIENT VITAL SIGN DETAILS \n PRESS 4 TO EXIT \n");
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
             int i = sc.nextInt();
             switch (i) {
@@ -43,7 +43,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-                    System.out.println("TEST VITAL SIGNS");
+                    System.out.println("PATIENT VITAL SIGNS TEST");
                     System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
                     TestPatient.runHardCodeTest();
                     break;
@@ -65,19 +65,13 @@ public class Main {
 
     private void displayVitalSignHistory() {
         VitalSigns vs = patient.getVitalSigns();
-
-        double age = patient.getAgeGroup();
-
-        System.out.println("Age Group  : " + age);
         System.out.println("First Name : " + patient.getFirstName());
         System.out.println("Last Name  : " + patient.getLastName());
-
-        //for (int i = 0; i < list.size(); i++) {
+        PatientHelperUtils.setAgeValue(patient, ageGroup);
         System.out.println("");
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("                   PATIENT VITAL SIGN DETAILS    ");
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-        //VitalSigns vs = list.get(i);
         System.out.println("Respiratory Rate : " + vs.getRespiratorRate());
         System.out.println("Heart Rate       : " + vs.getHeartRate());
         System.out.println("Blood Pressure   : " + vs.getSystolicBloodPressure());
@@ -109,8 +103,8 @@ public class Main {
             System.out.println("AGE GROUP CATEGORIES : Newborn, Infant(1-12months), Toddler(1-3 years), Prechooler(3-5 years), schoolAge(6-12 years), Adolescent(13+ years) ");
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("ENTER DATE OF BIRTH IN FORMAT YYYY-MM-DD: OF PATIENT TO GET AGE");
-            String ageGroup = sc.next();
-            PatientHelperUtils.setAgeValue(patient,ageGroup);
+             ageGroup = sc.next();
+            PatientHelperUtils.setAgeValue(patient, ageGroup);
 
         }
         if (patient.getFirstName() == null) {

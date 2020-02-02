@@ -18,7 +18,7 @@ public class Main {
 
     Patient patient = new Patient();
     //Scanner sc = new Scanner(System.in); 
-
+ private String ageGroup;
     public static void main(String args[]) {
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("                                           PEDIATRIC VITAL SIGNS FOR PATIENTS                                                                      ");
@@ -59,9 +59,7 @@ public class Main {
     private void displayVitalSignHistory() {
         VitalSignHistory vsh = patient.getVitalSignHistory();
         ArrayList<VitalSigns> list = vsh.getVitalSignHistoryList();
-        Double age = patient.getAgeGroup();
-
-        System.out.println("Age Group : " + age);
+        PatientHelperUtils.setAgeValue(patient, ageGroup);
         System.out.println("First Name : " + patient.getFirstName());
         System.out.println("Last Name : " + patient.getLastName());
 
@@ -102,21 +100,8 @@ public class Main {
             System.out.println("AGE GROUP CATEGORIES : Newborn, Infant(1-12months), Toddler(1-3 years), Prechooler(3-5 years), schoolAge(6-12 years), Adolescent(13+ years) ");
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("ENTER DATE OF BIRTH IN FORMAT YYYY-MM-DD: OF PATIENT TO GET AGE");
-            String ageGroup = sc.next();
-            LocalDate dob = LocalDate.parse(ageGroup);
-
-            if (getAge(dob) < 1) {
-                //getMonthsAge(dob);
-                double agePatientMonths = getMonthsAge(dob);
-                patient.setAgeGroup(agePatientMonths);
-                System.out.println("PATIENT AGE IS : " + getMonthsAge(dob) + " Months");
-            } else {
-                double agePatientYears = getAge(dob)*12;
-                System.out.println("PATIENT AGE IS : " + getAge(dob) + " Years");
-                //System.out.println("Age is:" + agePatientYears + " Converted Years in Months");
-                patient.setAgeGroup(agePatientYears);
-                
-            }
+             ageGroup = sc.next();
+         PatientHelperUtils.setAgeValue(patient, ageGroup);
             
             
         }
@@ -179,16 +164,6 @@ public class Main {
         }
 
     }
-      // Returns age in Years
-    public static double getAge(LocalDate dob) {
-        LocalDate curDate = LocalDate.now();
-        return Period.between(dob, curDate).getYears();
-    }
-
-    // Returns age in Months
-    public static double getMonthsAge(LocalDate dob) {
-        LocalDate curDate = LocalDate.now();
-        return Period.between(dob, curDate).getMonths();
-    }
+  
 
 }
