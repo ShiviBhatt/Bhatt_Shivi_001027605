@@ -30,7 +30,7 @@ public class Main {
             //System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
             //System.out.println("                                           PEDIATRIC VITAL SIGNS FOR PATIENTS                                                                      ");
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println(" CHOOSE FROM THE MENU OPTION \n PRESS 1 FOR ADDING PATIENT DETAILS AND VITAL SIGNS \n PRESS 2 VIEW PATIENT VITAL SIGN HISTORY \n PRESS 3 TO EXIT \n");
+            System.out.println(" CHOOSE FROM THE MENU OPTION \n PRESS 1 TO ADD PATIENT AND VITAL SIGNS DETAILS \n PRESS 2 TO VIEW PATIENT VITAL SIGN HISTORY \n PRESS 3 TO CHECK SPECIFIC VITAL SIGN OF A PATIENT \n PRESS 4 TO EXIT \n");
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
             int i = sc.nextInt();
             switch (i) {
@@ -47,10 +47,43 @@ public class Main {
                     main.displayVitalSignHistory();
                     break;
                 case 3:
+                     System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+                    System.out.println("PATIENT SPECIFIC VITAL SIGN \n 1. RespiratoryRate \n 2. HeartRate \n 3. BloodPressure \n 4. WeightKilos \n 5. WeightPounds \n" );
+                    System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+                    System.out.println("PLEASE ENTER VITAL SIGN AS GIVEN FROM ABOVE OPTION WHICH YOU WANT TO CHECK ");
+                    System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+                    String vsignName =sc.next();
+                    System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
+                    //int vsignNumber =sc.nextInt();
+                    switch(vsignName){
+                        case "RespiratoryRate": 
+                            vsignName ="Respiratory Rate";
+                           break;
+                        case "HeartRate": 
+                            vsignName ="Heart Rate";
+                            break;
+                        case "BloodPressure":
+                            vsignName ="Systolic Blood Pressure";
+                            break;
+                        case "WeightKilos":
+                            vsignName ="Weight in Kilos";
+                            break;
+                        case "WeightPounds":
+                            vsignName ="Weight in Pounds";
+                            break;
+                        default :
+                            System.out.println("PLEASE ENTER VALID VITAL SIGN");
+                        break;
+                    }
+                    //main.isThisVitalSignNormal(vsignName, null);
+                    System.out.println(main.isThisVitalSignNormal(vsignName, null));
+                    break;
+                    
+                case 4:
                     x = false;
                     break;
                 default:
-                    System.out.println("PRESS 1 , 2 OR 3 FROM THE OPTIONS");
+                    System.out.println("PRESS 1 , 2, 3  OR 4 FROM THE OPTIONS");
             }
         }
         sc.close();
@@ -109,6 +142,7 @@ public class Main {
             System.out.println("ENTER FIRST NAME ");
             String firstName = sc.next();
             patient.setFirstName(firstName);
+            patient.firstName="";
         }
         if (patient.getLastName() == null) {
             System.out.println("ENTER LAST NAME ");
@@ -150,7 +184,7 @@ public class Main {
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("                         VITAL SIGNS STATUS                        ");
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-
+        //patient.setVitalSigns(vs);
         patient.addVitalSign(vs);
 
         if (patient.isPatientNormal(vs)) {
@@ -165,5 +199,12 @@ public class Main {
 
     }
   
+      public boolean isThisVitalSignNormal(String vsignName, VitalSigns vitalSigns) {
+       
+          
+          return patient.isThisVitalSignNormal(vsignName, vitalSigns);
+      }
+        
+    
 
 }
