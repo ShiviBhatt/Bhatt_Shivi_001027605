@@ -93,8 +93,9 @@ public class Main {
         VitalSignHistory vsh = patient.getVitalSignHistory();
         ArrayList<VitalSigns> list = vsh.getVitalSignHistoryList();
         PatientHelperUtils.setAgeValue(patient, ageGroup);
-        System.out.println("First Name : " + patient.getFirstName());
-        System.out.println("Last Name : " + patient.getLastName());
+        System.out.println("First Name     : " + patient.getFirstName());
+        System.out.println("Last Name      : " + patient.getLastName());
+        System.out.println("Date Visited   : " + patient.getDateVisited());
 
         for (int i = 0; i < list.size(); i++) {
             System.out.println("");
@@ -142,13 +143,17 @@ public class Main {
             System.out.println("ENTER FIRST NAME ");
             String firstName = sc.next();
             patient.setFirstName(firstName);
-            patient.firstName="";
+            
         }
         if (patient.getLastName() == null) {
             System.out.println("ENTER LAST NAME ");
             String lastName = sc.next();
             patient.setLastName(lastName);
         }
+        System.out.println("ENTER PATIENT DATE VISITED");
+        String dateVisited= sc.next();
+        patient.setDateVisited(dateVisited);
+        
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("                       CHECK FOR VARIOUS PEDIATRIC VITAL SIGNS                                                                                 ");
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");

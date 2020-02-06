@@ -14,6 +14,7 @@ public class Patient {
     private Double ageGroup;
     public String firstName;
     private String lastName;
+    private String dateVisited;
    //private VitalSigns latestVitalSigns;
     private VitalSignHistory vitalSignHistory = new VitalSignHistory();
 
@@ -42,6 +43,14 @@ public class Patient {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getDateVisited() {
+        return dateVisited;
+    }
+
+    public void setDateVisited(String dateVisited) {
+        this.dateVisited = dateVisited;
     }
 
 
