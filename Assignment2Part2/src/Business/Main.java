@@ -8,6 +8,7 @@ package Business;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -146,11 +147,11 @@ public class Main {
 
         }
         if (patient.getLastName() == null) {
-            System.out.println("ENTER LAST NAME ");
+            System.out.println("ENTER LAST NAME  ");
             String lastName = sc.next();
             patient.setLastName(lastName);
         }
-        System.out.println("ENTER PATIENT DATE VISITED");
+        System.out.println("ENTER PATIENT DATE VISITED IN FORMAT YYYY-MM-DD  ");
         String dateVisited = sc.next();
         patient.setDateVisited(dateVisited);
 
