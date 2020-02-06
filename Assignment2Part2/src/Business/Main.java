@@ -18,7 +18,8 @@ public class Main {
 
     Patient patient = new Patient();
     //Scanner sc = new Scanner(System.in); 
- private String ageGroup;
+    private String ageGroup;
+
     public static void main(String args[]) {
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("                                           PEDIATRIC VITAL SIGNS FOR PATIENTS                                                                      ");
@@ -47,38 +48,38 @@ public class Main {
                     main.displayVitalSignHistory();
                     break;
                 case 3:
-                     System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-                    System.out.println("PATIENT SPECIFIC VITAL SIGN \n 1. RespiratoryRate \n 2. HeartRate \n 3. BloodPressure \n 4. WeightKilos \n 5. WeightPounds \n" );
+                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+                    System.out.println("PATIENT SPECIFIC VITAL SIGN \n 1. RespiratoryRate \n 2. HeartRate \n 3. BloodPressure \n 4. WeightKilos \n 5. WeightPounds \n");
                     System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
                     System.out.println("PLEASE ENTER VITAL SIGN AS GIVEN FROM ABOVE OPTION WHICH YOU WANT TO CHECK ");
                     System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
-                    String vsignName =sc.next();
+                    String vsignName = sc.next();
                     System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
                     //int vsignNumber =sc.nextInt();
-                    switch(vsignName){
-                        case "RespiratoryRate": 
-                            vsignName ="Respiratory Rate";
-                           break;
-                        case "HeartRate": 
-                            vsignName ="Heart Rate";
+                    switch (vsignName) {
+                        case "RespiratoryRate":
+                            vsignName = "Respiratory Rate";
+                            break;
+                        case "HeartRate":
+                            vsignName = "Heart Rate";
                             break;
                         case "BloodPressure":
-                            vsignName ="Systolic Blood Pressure";
+                            vsignName = "Systolic Blood Pressure";
                             break;
                         case "WeightKilos":
-                            vsignName ="Weight in Kilos";
+                            vsignName = "Weight in Kilos";
                             break;
                         case "WeightPounds":
-                            vsignName ="Weight in Pounds";
+                            vsignName = "Weight in Pounds";
                             break;
-                        default :
+                        default:
                             System.out.println("PLEASE ENTER VALID VITAL SIGN");
-                        break;
+                            break;
                     }
                     //main.isThisVitalSignNormal(vsignName, null);
                     System.out.println(main.isThisVitalSignNormal(vsignName, null));
                     break;
-                    
+
                 case 4:
                     x = false;
                     break;
@@ -127,23 +128,22 @@ public class Main {
 
     private void newVitalSign(Scanner sc) {
 
-        VitalSigns vs = new VitalSigns(); 
-        
+        VitalSigns vs = new VitalSigns();
+
         if (patient.getAgeGroup() == null) {
             System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("AGE GROUP CATEGORIES : Newborn, Infant(1-12months), Toddler(1-3 years), Prechooler(3-5 years), schoolAge(6-12 years), Adolescent(13+ years) ");
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("ENTER DATE OF BIRTH IN FORMAT YYYY-MM-DD: OF PATIENT TO GET AGE");
-             ageGroup = sc.next();
-         PatientHelperUtils.setAgeValue(patient, ageGroup);
-            
-            
+            ageGroup = sc.next();
+            PatientHelperUtils.setAgeValue(patient, ageGroup);
+
         }
         if (patient.getFirstName() == null) {
             System.out.println("ENTER FIRST NAME ");
             String firstName = sc.next();
             patient.setFirstName(firstName);
-            
+
         }
         if (patient.getLastName() == null) {
             System.out.println("ENTER LAST NAME ");
@@ -151,9 +151,9 @@ public class Main {
             patient.setLastName(lastName);
         }
         System.out.println("ENTER PATIENT DATE VISITED");
-        String dateVisited= sc.next();
+        String dateVisited = sc.next();
         patient.setDateVisited(dateVisited);
-        
+
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("                       CHECK FOR VARIOUS PEDIATRIC VITAL SIGNS                                                                                 ");
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------");
@@ -193,23 +193,20 @@ public class Main {
         patient.addVitalSign(vs);
 
         if (patient.isPatientNormal(vs)) {
-           System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-           System.out.println("                      PATIENT IS NORMAL                        ");
-           System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("                      PATIENT IS NORMAL                        ");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         } else {
-           System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-           System.out.println("                      PATIENT IS ABNORMAL                      ");
-           System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("                      PATIENT IS ABNORMAL                      ");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         }
 
     }
-  
-      public boolean isThisVitalSignNormal(String vsignName, VitalSigns vitalSigns) {
-       
-          
-          return patient.isThisVitalSignNormal(vsignName, vitalSigns);
-      }
-        
-    
+
+    public boolean isThisVitalSignNormal(String vsignName, VitalSigns vitalSigns) {
+
+        return patient.isThisVitalSignNormal(vsignName, vitalSigns);
+    }
 
 }

@@ -15,11 +15,10 @@ public class Patient {
     public String firstName;
     private String lastName;
     private String dateVisited;
-   //private VitalSigns latestVitalSigns;
+    //private VitalSigns latestVitalSigns;
     private VitalSignHistory vitalSignHistory = new VitalSignHistory();
 
     //VitalSigns vs = new VitalSigns();
-
     public Double getAgeGroup() {
         return ageGroup;
     }
@@ -28,7 +27,6 @@ public class Patient {
         this.ageGroup = ageGroup;
     }
 
- 
     public String getFirstName() {
         return firstName;
     }
@@ -53,15 +51,10 @@ public class Patient {
         this.dateVisited = dateVisited;
     }
 
-
-
-
-
-
     public void addVitalSign(VitalSigns vitalSign) {
-       //this.latestVitalSigns = vitalSign;
+        //this.latestVitalSigns = vitalSign;
         vitalSignHistory.addVital(vitalSign);
-        
+
     }
 
     public VitalSignHistory getVitalSignHistory() {
@@ -72,50 +65,46 @@ public class Patient {
         this.vitalSignHistory = vitalSignHistory;
     }
 
-    
-      public boolean isThisVitalSignNormal(String vsignName, VitalSigns vitalSigns) {
-        
-            if(vitalSigns == null){
-                if(vitalSignHistory.getVitalSignHistoryList().size() ==0){
+    public boolean isThisVitalSignNormal(String vsignName, VitalSigns vitalSigns) {
+
+        if (vitalSigns == null) {
+            if (vitalSignHistory.getVitalSignHistoryList().size() == 0) {
                 throw new IllegalArgumentException("There is no items in the patient Vital sign history List");
-                }else{
-                vitalSigns = vitalSignHistory.getVitalSignHistoryList().get(vitalSignHistory.getVitalSignHistoryList().size()-1);
+            } else {
+                vitalSigns = vitalSignHistory.getVitalSignHistoryList().get(vitalSignHistory.getVitalSignHistoryList().size() - 1);
             }
-            
+
         }
 
         return vitalSigns.isThisVitalSignNormal(vsignName, ageGroup);
-        
+
     }
-    public boolean isPatientNormal(VitalSigns vitalSigns){
-       
+
+    public boolean isPatientNormal(VitalSigns vitalSigns) {
+
         boolean flag = true;
-        if(!vitalSigns.isThisVitalSignNormal("Respiratory Rate",ageGroup)){
+        if (!vitalSigns.isThisVitalSignNormal("Respiratory Rate", ageGroup)) {
             flag = false;
             //System.out.println("Respiratory " + flag);
         }
-        if(!vitalSigns.isThisVitalSignNormal("Heart Rate",ageGroup)){
-            flag=false;
-             //System.out.println("Heart Rate Normal " + flag);
+        if (!vitalSigns.isThisVitalSignNormal("Heart Rate", ageGroup)) {
+            flag = false;
+            //System.out.println("Heart Rate Normal " + flag);
         }
-        if(!vitalSigns.isThisVitalSignNormal("Systolic Blood Pressure",ageGroup)){
-            flag=false;
-             //System.out.println("Blood pressure" + flag);
+        if (!vitalSigns.isThisVitalSignNormal("Systolic Blood Pressure", ageGroup)) {
+            flag = false;
+            //System.out.println("Blood pressure" + flag);
         }
-        if(!vitalSigns.isThisVitalSignNormal("Weight in Kilos",ageGroup)){
-            flag=false;
-             //System.out.println("Weight Kg" + flag);
+        if (!vitalSigns.isThisVitalSignNormal("Weight in Kilos", ageGroup)) {
+            flag = false;
+            //System.out.println("Weight Kg" + flag);
         }
-        if(!vitalSigns.isThisVitalSignNormal("Weight in Pounds",ageGroup)){
-            flag=false;
-             //System.out.println("Weight Pound" + flag);
+        if (!vitalSigns.isThisVitalSignNormal("Weight in Pounds", ageGroup)) {
+            flag = false;
+            //System.out.println("Weight Pound" + flag);
         }
-       
+
         return flag;
     }
-    
-    
-    
 
-    
 }
