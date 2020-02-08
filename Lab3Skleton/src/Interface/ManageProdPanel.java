@@ -212,7 +212,7 @@ public class ManageProdPanel extends javax.swing.JPanel {
 
     private void backButtonManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonManageActionPerformed
         // TODO add your handling code here:
-        
+
         rightPanel.remove(this);
         ProdManagementPanel prodManagementPanel = new ProdManagementPanel(rightPanel, accDir);
         rightPanel.add("ProdManagementPanel", prodManagementPanel);
