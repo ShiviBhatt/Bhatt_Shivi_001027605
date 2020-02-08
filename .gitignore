@@ -28,3 +28,6 @@ dist/
 nbdist/
 .nb-gradle/
 target/
+/Lab3Skleton/nbproject/private/
+/Lab3Skleton/nbproject/
+/Lab3Skleton/build/
