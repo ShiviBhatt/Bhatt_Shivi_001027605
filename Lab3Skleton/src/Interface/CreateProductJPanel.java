@@ -187,7 +187,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Product Name Cannot be Same");
                 return;
             }else {
-                   prodName = txtProdName.getText();
+                  
             }
         }
         //SetValues
