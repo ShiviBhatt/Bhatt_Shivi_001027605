@@ -20,6 +20,7 @@
 /Assignment2_Part1/build/
 *.class
 /Lab2.5/build/
+/Lab3Skleton/build/
 ### NetBeans ###
 nbproject/private/
 build/
