@@ -233,41 +233,43 @@ public class ViewPanel extends javax.swing.JPanel {
         } else {
             description = txtDesc.getText();
         }
-//            accDir.addProduct().setName(prodName);
-//            accDir.addProduct().setPrice(price);
-//            accDir.addProduct().setAvailNum(availability);
-//            accDir.addProduct().setDescription(description);
+
+        //unique product name
+       //unique product name
+        for(Product a : accDir.getProductDirectory() ){
+            boolean flag = true;
+            if (a.getName().equalsIgnoreCase(prodName) && ! a.equals(product)){
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Product Name Cannot be Same");
+                return;
+            }else {
+                 
+            }
+       
+        }
         product.setName(prodName);
         product.setPrice(price);
         product.setAvailNum(availability);
         product.setDescription(description);
         accDir.setProduct(product);
-        //accDir.setProductDirectory(updateDirectory);
-        //manageProd.populate();
+        
         btnSave.setEnabled(false);
         btnUpdate.setEnabled(true);
 
-        JOptionPane.showMessageDialog(null, "Account updated successfully");
+             JOptionPane.showMessageDialog(null, "Account updated successfully");
 
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void backViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backViewButtonActionPerformed
         // TODO add your handling code here:
-//        rightPanel.remove(this);
-//        CardLayout layout = (CardLayout) rightPanel.getLayout();
-//       // manageProd.ManageProdPanel(rightPanel, accDir);
-//        layout.previous(rightPanel);
-//        //super(rightPanel,accDir);
         rightPanel.remove(this);
         ManageProdPanel manageProdJPanel = new ManageProdPanel(rightPanel, accDir);
         rightPanel.add("ManageProdPanel", manageProdJPanel);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.previous(rightPanel);
 
-       
-     
-       
+
     }//GEN-LAST:event_backViewButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

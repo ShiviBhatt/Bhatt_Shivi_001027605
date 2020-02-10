@@ -144,7 +144,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         //Product Name
         String prodName = txtProdName.getText();
-        if (prodName.isEmpty()) {
+        if (prodName.isEmpty() ) {
             JOptionPane.showMessageDialog(null, "Product Name Cannot be empty");
             return;
         } else {
@@ -177,6 +177,18 @@ public class CreateProductJPanel extends javax.swing.JPanel {
             return;
         } else {
             description = txtDescription.getText();
+        }
+        
+        //unique product name
+        for(Product a : accDir.getProductDirectory() ){
+            boolean flag = true;
+            if (a.getName().equalsIgnoreCase(prodName)){
+                flag = false;
+                JOptionPane.showMessageDialog(null, "Product Name Cannot be Same");
+                return;
+            }else {
+                   prodName = txtProdName.getText();
+            }
         }
         //SetValues
         Product prod = accDir.addProduct();

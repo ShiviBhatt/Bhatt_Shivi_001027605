@@ -72,9 +72,9 @@
                   <Component id="searchProducts" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="viewProductBackBtn" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="298" max="32767" attributes="0"/>
           </Group>
