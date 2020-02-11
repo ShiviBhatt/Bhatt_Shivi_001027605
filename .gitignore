@@ -21,11 +21,4 @@
 *.class
 /Lab2.5/build/
 /Lab3Skleton/build/
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-target/
+/AirlineManagementSystem/nbproject/private/
