@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Shivi Bhatt
  */
 public class AdminMainScreen extends javax.swing.JPanel {
 

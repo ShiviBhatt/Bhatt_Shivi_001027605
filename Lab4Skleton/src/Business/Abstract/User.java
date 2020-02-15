@@ -7,7 +7,7 @@ package Business.Abstract;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Shivi Bhatt
  */
 public abstract class User {
     private String password;

@@ -7,7 +7,7 @@ package Business;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Shivi Bhatt
  */
 public class Product implements Comparable<Product>{
     private String name;

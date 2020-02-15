@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Shivi Bhatt
  */
 public class SuccessScreen extends javax.swing.JPanel {
 

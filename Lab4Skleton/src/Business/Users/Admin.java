@@ -11,7 +11,7 @@ import Business.SupplierDirectory;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Shivi Bhatt
  */
 public class Admin extends User {
     

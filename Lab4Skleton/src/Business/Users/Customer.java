@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Shivi Bhatt
  */
 public class Customer  extends User implements Comparable<Customer>{
      private ProductDirectory directory;

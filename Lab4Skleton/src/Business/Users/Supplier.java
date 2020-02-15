@@ -10,7 +10,7 @@ import Business.ProductDirectory;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Shivi Bhatt
  */
 public class Supplier extends User implements Comparable<Supplier>{
     
