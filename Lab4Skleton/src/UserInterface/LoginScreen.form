@@ -81,7 +81,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="txtTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Supplier Login Screen"/>
+        <Property name="text" type="java.lang.String" value="              Login Screen"/>
       </Properties>
     </Component>
   </SubComponents>

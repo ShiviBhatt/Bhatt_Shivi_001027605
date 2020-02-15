@@ -111,15 +111,26 @@ public class AdminMainScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateActionPerformed
 
 
-    public void populate(){
-        DefaultTableModel dtm = (DefaultTableModel)tableSup.getModel();
-        dtm.setRowCount(0);
+ public void populate(){
+     //Supplier Table population
+        DefaultTableModel dtmSupp = (DefaultTableModel)tableSup.getModel();
+        dtmSupp.setRowCount(0);
         for(User u : admin.getSuppDir().getSupplierList()){
             Supplier s = (Supplier)u;
-            Object[] row = new Object[dtm.getColumnCount()];
+            Object[] row = new Object[dtmSupp.getColumnCount()];
             row[0]=s;
             row[1]=s.getDirectory().getProductList().size();
-            dtm.addRow(row);
+            dtmSupp.addRow(row);
+        }
+        //Customer Table Population
+        DefaultTableModel dtmCust = (DefaultTableModel)tableCust.getModel();
+        dtmCust.setRowCount(0);
+        for(User u : admin.getCustDir().getCustomerList()){
+            Customer c = (Customer) u;
+            Object[] row = new Object[dtmCust.getColumnCount()];
+            row[0]=c;
+            row[1]=c.getCreateDate();
+            dtmCust.addRow(row);
         }
 
     }

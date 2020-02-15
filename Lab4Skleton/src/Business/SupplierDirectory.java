@@ -30,5 +30,8 @@ public class SupplierDirectory {
         this.supplierList = supplierList;
     }
     
+     public void addSupplier(Supplier sup){
+        supplierList.add(sup);
     
+    }
 }
