@@ -7,6 +7,7 @@ package Business;
 import Business.Customer.CustomerDirectory;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Employee.EmployeeDirectory;
+import Business.Restaurant.Menu;
 import Business.Restaurant.RestaurantDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
@@ -26,6 +27,7 @@ public abstract class Organization {
     private CustomerDirectory customerDirectory;
     private DeliveryManDirectory deliveryManDirectory;
     private RestaurantDirectory restaurantDirectory;
+    private Menu itemList;
     private int organizationID;
     private static int counter=0;
     
@@ -52,6 +54,7 @@ public abstract class Organization {
         customerDirectory = new CustomerDirectory();
         deliveryManDirectory = new DeliveryManDirectory();
         restaurantDirectory = new RestaurantDirectory();
+        itemList = new Menu();
         organizationID = counter;
         ++counter;
     }
@@ -115,6 +118,14 @@ public abstract class Organization {
 
     public void setRestaurantDirectory(RestaurantDirectory restaurantDirectory) {
         this.restaurantDirectory = restaurantDirectory;
+    }
+
+    public Menu getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(Menu itemList) {
+        this.itemList = itemList;
     }
     
     

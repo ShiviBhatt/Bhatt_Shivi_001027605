@@ -6,12 +6,15 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Restaurant.Item;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,10 +29,13 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccountDirectory userAccountList;
-    public ManageRestaurantJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+
+    public ManageRestaurantJPanel(JPanel userProcessContainer, EcoSystem ecosystem) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.ecosystem=ecosystem;
+        initListners();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        populateTable();
     }
 
     /**
@@ -60,7 +66,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "username", "password", "restaurant name"
+                "restaurant name", "username", "password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -90,8 +96,18 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         });
 
         btnModify.setText("modify");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         createUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,48 +192,111 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-             if( createUserName.getText().isEmpty()||createPassword.getText().isEmpty() ||  createRestaurantName.getText().isEmpty())
-        {
+        if (createUserName.getText().isEmpty() || createPassword.getText().isEmpty() || createRestaurantName.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "please enter all mandatory fields");
             return;
         }
-        
-         if(ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(createUserName.getText())){
-            Restaurant restaurant = new Restaurant(createUserName.getText(), createPassword.getText(),  createRestaurantName.getText());
+
+        if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(createUserName.getText())) {
+            Restaurant restaurant = new Restaurant(createUserName.getText(), createPassword.getText(), createRestaurantName.getText());
             ecosystem.getUserAccountDirectory().addUserAccount(restaurant);
             ecosystem.getRestaurantDirectory().addRestaurant(restaurant);
             populateTable();
             createUserName.setText("");
             createPassword.setText("");
             createRestaurantName.setText("");
-            
-         }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Username " + createUserName.getText() + " already exists !!!, Please try a new one");
-         }
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-         userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
-        private void populateTable(){
-         RestaurantDirectory restaurantDirectory = ecosystem.getRestaurantDirectory();
-        DefaultTableModel model = (DefaultTableModel) tblRestaurantAdmin.getModel();
 
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Shivi Update");
+
+        int selectedRow = tblRestaurantAdmin.getSelectedRow();
+        if (selectedRow >= 0) {
+            System.out.println("xyz" + selectedRow);
+            System.out.println("Shivi 2");
+            Restaurant restaurant = (Restaurant) tblRestaurantAdmin.getValueAt(selectedRow, 0);
+            System.out.println("item : " + restaurant);
+            restaurant.setUsername(createUserName.getText());
+            restaurant.setPassword(createPassword.getText());
+            restaurant.setName(createRestaurantName.getText());
+            populateTable();
+            createUserName.setText("");
+            createPassword.setText("");
+            createRestaurantName.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+           int selectedRow = tblRestaurantAdmin.getSelectedRow();
+
+        if (selectedRow >= 0) {
+            Restaurant restaurant = (Restaurant) tblRestaurantAdmin.getValueAt(selectedRow, 0);
+            RestaurantDirectory restaurantDirectory = ecosystem.getRestaurantDirectory();
+            restaurantDirectory.removeRestaurant(restaurant);
+            JOptionPane.showMessageDialog(null, "Restaurant admin "  + createUserName.getText() + " deleted");
+            populateTable();
+            createUserName.setText("");
+            createPassword.setText("");
+            createRestaurantName.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+           
+      
+    }//GEN-LAST:event_btnDeleteActionPerformed
+    private void populateTable() {
+        RestaurantDirectory restaurantDirectory = ecosystem.getRestaurantDirectory();
+        DefaultTableModel model = (DefaultTableModel) tblRestaurantAdmin.getModel();
         model.setRowCount(0);
         for (Restaurant restaurant : restaurantDirectory.getRestaurantList()) {
-                    Object[] row = new Object[3];
-                    row[0] = restaurant.getUsername();
-                    row[1] = restaurant.getPassword();
-                    row[2] = restaurant.getName();
-                  
+            Object[] row = new Object[3];
+            row[0] = restaurant;
+            row[1] = restaurant.getUsername();
+            row[2] = restaurant.getPassword();
 
-                    model.addRow(row);
-                
-            }
+            model.addRow(row);
+
         }
+    }
+
+   
+    private void initListners() {
+       tblRestaurantAdmin.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+           int selectedRow = tblRestaurantAdmin.getSelectedRow();
+             if (selectedRow >= 0) {
+                  Restaurant  restaurant  = (Restaurant) tblRestaurantAdmin.getValueAt(selectedRow, 0);
+                 if(restaurant!=null){
+                     display(restaurant);
+                 }
+             }
+        }
+    });
+    }
+
+    private void display(Restaurant restaurant) {
+        System.out.println("Shivi display");
+        createUserName.setText(restaurant.getUsername());
+        createPassword.setText(restaurant.getPassword());
+        createRestaurantName.setText(restaurant.getName());
+        
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

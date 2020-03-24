@@ -7,6 +7,7 @@ package Business.Role;
 import Business.EcoSystem;
 
 import Business.Organization;
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 

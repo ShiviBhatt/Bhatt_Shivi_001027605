@@ -12,10 +12,15 @@ package Business.Restaurant;
 public class Item {
     private String name;
     private double price;
+    private boolean itemSelection;
 
     public Item(String name, double price) {
         this.name = name;
         this.price = price;
+        
+    }
+    public Item(){
+        this.itemSelection =false;
     }
 
     public String getName() {
@@ -33,7 +38,18 @@ public class Item {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public boolean isItemSelection() {
+        return itemSelection;
+    }
+
+    public void setItemSelection(boolean itemSelection) {
+        this.itemSelection = itemSelection;
+    }
     
-    
+    @Override
+    public String toString() {
+        return this.name;
+    }
     
 }

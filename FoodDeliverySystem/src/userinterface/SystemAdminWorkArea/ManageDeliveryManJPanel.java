@@ -8,10 +8,13 @@ package userinterface.SystemAdminWorkArea;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,6 +31,7 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
     UserAccountDirectory userAccountList;
     public ManageDeliveryManJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
+        initListners();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
     }
@@ -62,12 +66,19 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "username", "password", "name", "phone"
+                "name", "phone", "username", "password"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -92,8 +103,18 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
         });
 
         btnModify.setText("modify");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         createUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +232,49 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Username " + createUserName.getText() + " already exists !!!, Please try a new one");
          }
     }//GEN-LAST:event_btnDeliveryManActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+          System.out.println("Shivi Update");
+
+        int selectedRow = tblDeliveryMan.getSelectedRow();
+        if (selectedRow >= 0) {
+            System.out.println("xyz" + selectedRow);
+            System.out.println("Shivi 2");
+            DeliveryMan deliveryMan = (DeliveryMan) tblDeliveryMan.getValueAt(selectedRow, 0);
+            System.out.println("item : " + deliveryMan);
+            deliveryMan.setUsername(createUserName.getText());
+            deliveryMan.setPassword(createPassword.getText());
+            deliveryMan.setName(createName.getText());
+            deliveryMan.setPhone(createPhone.getText());
+            populateTable();
+            createUserName.setText("");
+            createPassword.setText("");
+            createName.setText("");
+            createPhone.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+                  
+        int selectedRow = tblDeliveryMan.getSelectedRow();
+
+        if (selectedRow >= 0) {
+            DeliveryMan deliveryMan = (DeliveryMan) tblDeliveryMan.getValueAt(selectedRow, 0);
+           DeliveryManDirectory deliveryManDirectory = ecosystem.getDeliveryManDirectory();
+            deliveryManDirectory.removeDeliveryMan(deliveryMan);
+            JOptionPane.showMessageDialog(null, "Delivert Man  "  + createUserName.getText() + " deleted");
+            populateTable();
+            createUserName.setText("");
+            createPassword.setText("");
+            createName.setText("");
+            createPhone.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
     private void populateTable() {
         DeliveryManDirectory deliveryManDirectory = ecosystem.getDeliveryManDirectory();
         DefaultTableModel model = (DefaultTableModel) tblDeliveryMan.getModel();
@@ -218,15 +282,38 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryManList()) {
                     Object[] row = new Object[4];
-                    row[0] = deliveryMan.getUsername();
-                    row[1] = deliveryMan.getPassword();
-                    row[2] = deliveryMan.getName();
-                    row[3] = deliveryMan.getPhone();
-
+                    row[0] = deliveryMan;
+                    row[1] = deliveryMan.getPhone();       
+                    row[2] = deliveryMan.getUsername();
+                    row[3] = deliveryMan.getPassword();
                     model.addRow(row);
                 
             }
         
+    }
+    
+      private void initListners() {
+       tblDeliveryMan.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+           int selectedRow = tblDeliveryMan.getSelectedRow();
+             if (selectedRow >= 0) {
+                  DeliveryMan  deliveryMan  = (DeliveryMan) tblDeliveryMan.getValueAt(selectedRow, 0);
+                 if(deliveryMan!=null){
+                     display(deliveryMan);
+                 }
+             }
+        }
+    });
+    }
+
+    private void display(DeliveryMan deliveryMan) {
+        System.out.println("Shivi display");
+        createUserName.setText(deliveryMan.getUsername());
+        createPassword.setText(deliveryMan.getPassword());
+        createName.setText(deliveryMan.getName());
+        createPhone.setText(deliveryMan.getPhone());
+        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,6 +7,7 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
@@ -14,6 +15,8 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,6 +34,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
    
     public ManageCustomerJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
+        initListners();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
      
@@ -68,12 +72,19 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "username", "password", "name", "address", "phone"
+                "name", "address", "phone", "username", "password"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -106,8 +117,18 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         });
 
         btnModify.setText("modify");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -227,6 +248,52 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Username " + createUserName.getText() + " already exists !!!, Please try a new one");
          }
     }//GEN-LAST:event_btnCreateCustomerActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+              System.out.println("Shivi Update");
+
+        int selectedRow = tblCustomer.getSelectedRow();
+        if (selectedRow >= 0) {
+            System.out.println("xyz" + selectedRow);
+            System.out.println("Shivi 2");
+            Customer customer = (Customer) tblCustomer.getValueAt(selectedRow, 0);
+            System.out.println("item : " + customer);
+            customer.setUsername(createUserName.getText());
+            customer.setPassword(createPassword.getText());
+            customer.setName(createName.getText());
+            customer.setPhone(createPhone.getText());
+            customer.setAddress(createAddress.getText());
+            populateTable();
+            createUserName.setText("");
+            createPassword.setText("");
+            createName.setText("");
+            createPhone.setText("");
+            createAddress.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+         int selectedRow = tblCustomer.getSelectedRow();
+
+        if (selectedRow >= 0) {
+            Customer customer = (Customer) tblCustomer.getValueAt(selectedRow, 0);
+           CustomerDirectory customerDirectory = ecosystem.getCustomerDirectory();
+            customerDirectory.removeCustomer(customer);
+            JOptionPane.showMessageDialog(null, "Customer   "  + createUserName.getText() + " deleted");
+            populateTable();
+            createName.setText("");
+            createPhone.setText("");
+            createUserName.setText("");
+            createPassword.setText("");
+            createAddress.setText("");
+           
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
      private void populateTable() {
         CustomerDirectory customerDirectory = ecosystem.getCustomerDirectory();
         DefaultTableModel model = (DefaultTableModel) tblCustomer.getModel();
@@ -234,16 +301,41 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Customer customer : customerDirectory.getCustomerList()) {
                     Object[] row = new Object[5];
-                    row[0] = customer.getUsername();
-                    row[1] = customer.getPassword();
-                    row[2] = customer.getName();
-                    row[3] = customer.getAddress();
-                    row[4] = customer.getPhone();
+                    row[0] = customer;
+                    row[1] = customer.getAddress();
+                    row[2] = customer.getPhone();
+                    row[3] = customer.getUsername();
+                    row[4] = customer.getPassword();
 
                     model.addRow(row);
                 
             }
         
+    }
+       private void initListners() {
+       tblCustomer.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+           int selectedRow = tblCustomer.getSelectedRow();
+             if (selectedRow >= 0) {
+                  Customer  customer  = (Customer) tblCustomer.getValueAt(selectedRow, 0);
+                 if(customer!=null){
+                     display(customer);
+                 }
+             }
+        }
+    });
+    }
+     
+
+    private void display(Customer customer) {
+        System.out.println("Shivi display");
+        createUserName.setText(customer.getUsername());
+        createPassword.setText(customer.getPassword());
+        createName.setText(customer.getName());
+        createPhone.setText(customer.getPhone());
+        createAddress.setText(customer.getAddress());
+        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

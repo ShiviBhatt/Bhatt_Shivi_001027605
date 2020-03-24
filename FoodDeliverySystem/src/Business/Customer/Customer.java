@@ -5,6 +5,7 @@
  */
 package Business.Customer;
 
+import Business.Restaurant.Restaurant;
 import Business.Role.CustomerRole;
 import Business.UserAccount.UserAccount;
 
@@ -16,6 +17,7 @@ public class Customer extends UserAccount {
     private String name;
     private String address;
     private String phone;
+  
 
     public Customer(String userName, String password, String name, String address, String phone) {
         setUsername(userName);
@@ -49,6 +51,12 @@ public class Customer extends UserAccount {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+      @Override
+    public String toString() {
+        return this.name;
+    }
+    
     
     
 }

@@ -22,9 +22,14 @@ public class Restaurant extends UserAccount{
         setPassword(password);
         setRole(new AdminRole());
         this.name = name;
+        this.menu = new Menu();
      
     }
 
+    public Restaurant(){
+    
+    }
+    
     public String getName() {
         return name;
     }
@@ -48,6 +53,9 @@ public class Restaurant extends UserAccount{
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
-    
+      @Override
+    public String toString() {
+        return this.name;
+    }
     
 }

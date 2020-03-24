@@ -26,6 +26,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+     UserAccount userAccount;
  
     
 
@@ -131,7 +132,7 @@ public class MainJFrame extends javax.swing.JFrame {
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
         
-        UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
+        userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
         //UserAccount ua = system.getUserAccountDirectory().authenticateUser("sysadmin", "sysadmin");
 //        if(userAccount != null){
 //             container.add(userAccount.getRole().createWorkArea(container, userAccount, system));

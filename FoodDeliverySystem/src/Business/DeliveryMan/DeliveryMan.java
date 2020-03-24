@@ -37,5 +37,9 @@ public class DeliveryMan extends UserAccount{
     public void setPhone(String phone) {
         this.phone = phone;
     }
+       @Override
+    public String toString() {
+        return this.name;
+    }
     
 }
