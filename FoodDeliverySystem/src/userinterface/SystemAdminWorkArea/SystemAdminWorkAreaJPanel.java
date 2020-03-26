@@ -30,6 +30,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
         populateTree();
+        jTree.setVisible(false);
     }
     
     public void populateTree(){
@@ -129,7 +130,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnManageRestaurants, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnManageCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,12 +153,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         add(jSplitPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnManageCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomerActionPerformed
-        userinterface.SystemAdminWorkArea.ManageCustomerJPanel manageCustomer = new userinterface.SystemAdminWorkArea.ManageCustomerJPanel(userProcessContainer, ecosystem);
-        userProcessContainer.add("ManageCustomerJPanel",manageCustomer);
+    private void btnManageDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageDeliveryManActionPerformed
+        userinterface.SystemAdminWorkArea.ManageDeliveryManJPanel manageDeliveryMan = new userinterface.SystemAdminWorkArea.ManageDeliveryManJPanel(userProcessContainer, ecosystem);
+        userProcessContainer.add("ManageDeliveryManJPanel",manageDeliveryMan);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnManageCustomerActionPerformed
+    }//GEN-LAST:event_btnManageDeliveryManActionPerformed
 
     private void btnManageRestaurantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRestaurantsActionPerformed
         userinterface.SystemAdminWorkArea.ManageRestaurantJPanel manageRestaurant = new userinterface.SystemAdminWorkArea.ManageRestaurantJPanel(userProcessContainer, ecosystem);
@@ -166,15 +167,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageRestaurantsActionPerformed
 
-    private void btnManageDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageDeliveryManActionPerformed
-        userinterface.SystemAdminWorkArea.ManageDeliveryManJPanel manageDeliveryMan = new userinterface.SystemAdminWorkArea.ManageDeliveryManJPanel(userProcessContainer, ecosystem);
-        userProcessContainer.add("ManageDeliveryManJPanel",manageDeliveryMan);
+    private void btnManageCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomerActionPerformed
+        userinterface.SystemAdminWorkArea.ManageCustomerJPanel manageCustomer = new userinterface.SystemAdminWorkArea.ManageCustomerJPanel(userProcessContainer, ecosystem);
+        userProcessContainer.add("ManageCustomerJPanel",manageCustomer);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnManageDeliveryManActionPerformed
+    }//GEN-LAST:event_btnManageCustomerActionPerformed
 
     private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
-        
+
         DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
         if(selectedNode!=null){
             lblSelectedNode.setText(selectedNode.toString());

@@ -40,6 +40,9 @@ public class DeliveryMan extends UserAccount{
     
     @Override
     public String toString() {
+        if(name == null){
+            return "";
+        }
         return this.name;
     }
     

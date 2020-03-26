@@ -37,6 +37,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         initListners();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
+         populateTable();
      
     }
 

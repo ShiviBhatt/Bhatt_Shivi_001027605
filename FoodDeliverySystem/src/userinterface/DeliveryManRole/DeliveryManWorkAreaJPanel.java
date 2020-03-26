@@ -7,10 +7,15 @@ package userinterface.DeliveryManRole;
 import Business.EcoSystem;
 
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import userinterface.RestaurantAdminRole.ManageOrderDetailsJPanel;
 
 /**
  *
@@ -19,28 +24,57 @@ import javax.swing.table.DefaultTableModel;
 public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private EcoSystem business;
+    private EcoSystem ecosystem;
     private UserAccount userAccount;
-    
+    private List<WorkRequest> workRequestList;
     
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
-        
+        initListners();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
-        this.business = business;
-      
-        
-        populateTable();
+        this.ecosystem = ecosystem;
+        populatDeliveryRequestTable();
     }
     
-    public void populateTable(){
-        
-    }
+      private void populatDeliveryRequestTable(){
+        DefaultTableModel model = (DefaultTableModel) tblDeliveryManWorkRequest.getModel();
+        model.setRowCount(0);
+        workRequestList = ecosystem.getWorkQueue().getWorkRequestListDeliveryMan(userAccount);
+        for (WorkRequest request : workRequestList) {
+            Object[] row = new Object[tblDeliveryManWorkRequest.getColumnCount()];
+            row[0] = request;
+            row[1] = request.getRestaurant();
+            row[2] = request.getCustomer();
+            row[3] = request.getStatus();
+            row[4] = request.getRequestDate();
+            model.addRow(row);
+        }
+        }
 
+           private void initListners() {
+        tblDeliveryManWorkRequest.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblDeliveryManWorkRequest.getSelectedRow();
+                if (selectedRow >= 0) {
+                    WorkRequest request = (WorkRequest) tblDeliveryManWorkRequest.getValueAt(selectedRow, 0);
+                    if (request instanceof OrderWorkRequest) {
+                        OrderWorkRequest orderWorkRequest = (OrderWorkRequest) tblDeliveryManWorkRequest.getValueAt(selectedRow, 0);
+                        if (orderWorkRequest != null) {
+                           ProcessOrderJPanel processOrderJPanel = new ProcessOrderJPanel(userProcessContainer,ecosystem,userAccount,orderWorkRequest);
+                           userProcessContainer.add("ProcessOrderJPanel", processOrderJPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
+                        }
+                    }
+
+                }
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,20 +121,20 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
         tblDeliveryManWorkRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Message", "Sender", "Receiver", "Status", "Restaurant Name", "Customer Name", "Customer Address"
+                "Message", "Sender", "Receiver", "Status", "Request Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -147,7 +181,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 //        WorkRequest request = (WorkRequest)tblDeliveryManWorkRequest.getValueAt(selectedRow, 0);
 //        request.setDeliveryMan(userAccount);
 //        request.setStatus("Pending");
-        populateTable();
+       
         
     }//GEN-LAST:event_assignJButtonActionPerformed
 
@@ -171,7 +205,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
-        populateTable();
+    
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

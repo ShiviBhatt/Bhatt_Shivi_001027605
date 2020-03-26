@@ -38,7 +38,7 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
         this.account=account;
         this.workRequest=workRequest;
         cartTable = (DefaultTableModel) tblCart.getModel();
-        setVisibleEditable(false);
+        setVisibleEditable();
         display();
         //populateItemsWithQuantityTable();
     }
@@ -65,12 +65,7 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
          totalPrice.setText(total + "");
         
     }
-    private void populateItemsWithQuantityTable() {
-        
-     
-       
-        
-     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,7 +88,7 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
         totalPrice = new javax.swing.JLabel();
         message = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        submitFeedback = new javax.swing.JButton();
+        submitFeedbackButton = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         status = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -150,10 +145,10 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("ORDER DETAILS");
 
-        submitFeedback.setText("Submit Feedback");
-        submitFeedback.addActionListener(new java.awt.event.ActionListener() {
+        submitFeedbackButton.setText("Submit Feedback");
+        submitFeedbackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitFeedbackActionPerformed(evt);
+                submitFeedbackButtonActionPerformed(evt);
             }
         });
 
@@ -238,7 +233,7 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
                         .addGap(0, 745, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(317, 317, 317)
-                .addComponent(submitFeedback)
+                .addComponent(submitFeedbackButton)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -275,15 +270,18 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(customerFeedBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(submitFeedback)
+                .addComponent(submitFeedbackButton)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void submitFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitFeedbackActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_submitFeedbackActionPerformed
+    private void submitFeedbackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitFeedbackButtonActionPerformed
+        String feedback = customerFeedback.getText().toString();
+        if(!feedback.isEmpty()){
+            workRequest.setCustomerFeedback(feedback);
+            setVisibleEditable();
+        }
+    }//GEN-LAST:event_submitFeedbackButtonActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -292,12 +290,24 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout)userProcessContainer.getLayout();
             layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
-    private void setVisibleEditable(boolean value){
-        customerFeedBackPanel.setVisible(value);
-        customerFeedback.setVisible(value);
-        customerFeedback.setEditable(value);
-        submitFeedback.setVisible(value);
-        
+    private void setVisibleEditable(){
+        if(workRequest.getStatus().equalsIgnoreCase("delivered")){
+            customerFeedBackPanel.setVisible(true);
+            customerFeedback.setVisible(true);
+            customerFeedback.setEditable(true);
+            if(workRequest.getCustomerFeedback() != null){
+                customerFeedback.setText(workRequest.getCustomerFeedback());
+                customerFeedback.setEditable(false);
+                submitFeedbackButton.setVisible(false);
+            }else{
+                submitFeedbackButton.setVisible(true);
+            }
+        }else{
+            customerFeedBackPanel.setVisible(false);
+            customerFeedback.setVisible(false);
+            customerFeedback.setEditable(false);
+            submitFeedbackButton.setVisible(false);
+        }
         
     }
     
@@ -322,7 +332,7 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel requestDate;
     private javax.swing.JLabel restaurantName;
     private javax.swing.JLabel status;
-    private javax.swing.JButton submitFeedback;
+    private javax.swing.JButton submitFeedbackButton;
     private javax.swing.JTable tblCart;
     private javax.swing.JLabel totalPrice;
     // End of variables declaration//GEN-END:variables

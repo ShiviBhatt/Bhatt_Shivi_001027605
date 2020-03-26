@@ -65,7 +65,7 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="317" max="-2" attributes="0"/>
-              <Component id="submitFeedback" min="-2" max="-2" attributes="0"/>
+              <Component id="submitFeedbackButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -110,7 +110,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="customerFeedBackPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="submitFeedback" min="-2" max="-2" attributes="0"/>
+              <Component id="submitFeedbackButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -193,12 +193,12 @@
         <Property name="text" type="java.lang.String" value="ORDER DETAILS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="submitFeedback">
+    <Component class="javax.swing.JButton" name="submitFeedbackButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit Feedback"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitFeedbackActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitFeedbackButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">

@@ -19,6 +19,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     Restaurant restaurant;
+    UserAccount account;
    
     
     //public String username= restaurant.getUsername();
@@ -27,7 +28,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem=ecosystem;
-        
+        this.account=account;
         restaurant = (Restaurant)account;
         valueLabel.setText(restaurant.getName());
     }
@@ -101,7 +102,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageMenuActionPerformed
 
     private void btnManageOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrdersActionPerformed
-        ManageOrderJPanel manageOrderJPanel = new ManageOrderJPanel(userProcessContainer,ecosystem);
+        ManageOrderJPanel manageOrderJPanel = new ManageOrderJPanel(userProcessContainer,ecosystem,account);
         userProcessContainer.add("ManageOrderJPanel",manageOrderJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
