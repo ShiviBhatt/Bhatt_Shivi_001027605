@@ -31,6 +31,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.ecosystem=ecosystem;
         populateTree();
         jTree.setVisible(false);
+        jPanel1.setVisible(false);
+        lblSelectedNode.setVisible(false);
+        jLabel1.setVisible(false);
     }
     
     public void populateTree(){
