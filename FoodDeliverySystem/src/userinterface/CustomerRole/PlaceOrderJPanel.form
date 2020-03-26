@@ -110,10 +110,9 @@
         <Component class="javax.swing.JTable" name="tblOrder">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="6">
+              <Table columnCount="2" rowCount="6">
                 <Column editable="false" title="Item Name" type="java.lang.String"/>
                 <Column editable="false" title="Item Price" type="java.lang.String"/>
-                <Column editable="false" title="Item Selection" type="java.lang.String"/>
               </Table>
             </Property>
           </Properties>
@@ -151,7 +150,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="tblCart">
+    <Container class="javax.swing.JScrollPane" name="cartScrollPane">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -163,13 +162,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblCart">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="0">
                 <Column editable="false" title="Item Name" type="java.lang.String"/>
                 <Column editable="false" title="Item Qty" type="java.lang.Integer"/>
-                <Column editable="false" title="Item Price" type="java.lang.Integer"/>
+                <Column editable="true" title="Item Price" type="java.lang.Double"/>
               </Table>
             </Property>
           </Properties>

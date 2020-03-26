@@ -12,11 +12,12 @@ import Business.Restaurant.Menu;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.UserAccount.UserAccount;
-import Business.Utils.ButtonColumn;
-import Business.Utils.TableButtonListener;
-import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.ItemWithQuantity;
+import Business.WorkQueue.OrderWorkRequest;
+
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.HeadlessException;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -36,31 +40,35 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount userAccount;
     private Customer customer;
-    private DefaultTableModel dtm;
+    private DefaultTableModel menuTable;
+    private DefaultTableModel cartTable;
     private int index = -1;
     private int row = 0;
     private int column = 0;
-
+    private int quantity = 0;
     private EcoSystem ecosystem;
     private RestaurantDirectory resturantDirectory;
- 
+    private List<ItemWithQuantity> itemsWithQuantityList = new ArrayList<ItemWithQuantity>();
+
     /**
      * Creates new form RequestLabTestJPanel
      */
     public PlaceOrderJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
+        initListners();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.ecosystem = ecosystem;
         customer = (Customer) account;
         resturantDirectory = ecosystem.getRestaurantDirectory();
-        dtm = (DefaultTableModel) tblOrder.getModel();
+        menuTable = (DefaultTableModel) tblOrder.getModel();
+        cartTable = (DefaultTableModel) tblCart.getModel();
         populateRestaurantsList(resturantDirectory.getRestaurantList());
-        if(resturantDirectory.getRestaurantList().size() > 0){
+        if (resturantDirectory.getRestaurantList().size() > 0) {
             index = 0;
             populateMenu();
         }
-       
+
     }
 
     public boolean isItemSelected(Item item) {
@@ -87,25 +95,94 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             restaurantComboBox.addItem(restaurant.getName());
         }
     }
-    private void populateMenu(){
-        dtm.setRowCount(0);
-        TableCellRenderer buttonRenderer = new ButtonColumn("Add to Cart");
-        tblOrder.getColumn("Item Selection").setCellRenderer(buttonRenderer);
-//        ButtonColumn button = new ButtonColumn("Add to Cart");
-            TableButtonListener buttonClicked = new ButtonColumn("Add to Cart");
-            buttonClicked.tableButtonClicked(row, column); // need to get column n row index
+
+    private void populateMenu() {
+        menuTable.setRowCount(0);
+        //createAddToCartButton();
         Restaurant restaurant = resturantDirectory.getRestaurantList().get(index);
         Menu menu = restaurant.getMenu();
         List<Item> items = menu.getItemList();
         for (Item item : items) {
-                Object[] row = new Object[dtm.getColumnCount()];
-                row[0] = item;
-                row[1] = item.getPrice();
-                row[2] = item.isItemSelection();
-                dtm.addRow(row);
+            Object[] row = new Object[menuTable.getColumnCount()];
+            row[0] = item;
+            row[1] = item.getPrice();
+            menuTable.addRow(row);
         }
     }
 
+    private void initListners() {
+        tblOrder.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblOrder.getSelectedRow();
+                if (selectedRow >= 0) {
+                    Item item = (Item) tblOrder.getValueAt(selectedRow, 0);
+                    if (item != null) {
+                        String response = JOptionPane.showInputDialog("Please provide Quantity");
+                        try{
+                            quantity = Integer.parseInt(response);
+                        }catch(NumberFormatException e){
+                            
+                        }
+                        if (quantity != 0) {
+                            ItemWithQuantity itemWithQuantity = new ItemWithQuantity(item, quantity);
+                            itemsWithQuantityList.add(itemWithQuantity);
+                            System.out.println("QUANTITY : " + quantity);
+                            populateItemsWithQuantityTable();
+                        }
+
+                    }
+                }
+            }
+        });
+    }
+    
+    
+     private void populateItemsWithQuantityTable() {
+        double total = 0.0;
+        cartTable.setRowCount(0);   
+        for (ItemWithQuantity itemWithQuantity : itemsWithQuantityList) {
+            Object[] row = new Object[cartTable.getColumnCount()];
+            row[0] = itemWithQuantity;
+            row[1] = itemWithQuantity.getQuantity();
+            row[2] = itemWithQuantity.getItem().getPrice() * itemWithQuantity.getQuantity();
+            total += itemWithQuantity.getItem().getPrice() * itemWithQuantity.getQuantity();
+            cartTable.addRow(row);
+        }
+        totalPrice.setText(total + "");
+     }
+     
+     
+     private void createOrder(){
+         if(itemsWithQuantityList.isEmpty()){
+             JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
+         }else{
+            OrderWorkRequest orderWorkRequest = new OrderWorkRequest(); 
+         }
+     }
+
+//    private void createAddToCartButton(){
+//        ButtonColumn addToCartButton = new ButtonColumn("Add to Cart");
+//        addToCartButton.addTableButtonListener(new TableButtonListener(){
+//            @Override
+//            public void tableButtonClicked(int row, int col) {
+//                String response = JOptionPane.showInputDialog("Please provide Quantity");
+//                quantity = Integer.parseInt(response);
+//                System.out.println("QUANTITY : " + quantity);
+//            }
+//        });
+//        TableColumn col = tblOrder.getColumn("Item Selection");
+//        col.setCellRenderer(addToCartButton);
+//        col.setCellEditor(addToCartButton);
+//        
+//        
+////        row = tblOrder.getSelectedRow();
+////        column = tblOrder.getSelectedColumn();
+////        TableButtonListener buttonClicked = new ButtonColumn("Add to Cart");
+////        buttonClicked.tableButtonClicked(row, column); // need to get column n row index
+////        String response = JOptionPane.showInputDialog("Please provide Quantity");
+////        
+////        System.out.println("QUANTITY : " + quantity);
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,8 +203,8 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         tblOrder = new javax.swing.JTable();
         restaurantComboBox = new javax.swing.JComboBox<>();
         enterpriseLabel1 = new javax.swing.JLabel();
-        tblCart = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        cartScrollPane = new javax.swing.JScrollPane();
+        tblCart = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         totalPrice = new javax.swing.JTextField();
@@ -167,22 +244,22 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
 
         tblOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Item Name", "Item Price", "Item Selection"
+                "Item Name", "Item Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -208,7 +285,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         enterpriseLabel1.setText("Select Restaurant");
         add(enterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 110, 20));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCart.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -217,10 +294,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -231,9 +308,9 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblCart.setViewportView(jTable1);
+        cartScrollPane.setViewportView(tblCart);
 
-        add(tblCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 660, 190));
+        add(cartScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 660, 190));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("CART");
@@ -251,7 +328,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        
+
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -267,9 +344,11 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void restaurantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurantComboBoxActionPerformed
-       index = restaurantComboBox.getSelectedIndex();
-       populateMenu();
-       
+        index = restaurantComboBox.getSelectedIndex();
+        //clear of the selected items
+        itemsWithQuantityList.clear();
+        populateMenu();
+        populateItemsWithQuantityTable();
     }//GEN-LAST:event_restaurantComboBoxActionPerformed
 
     private void totalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalPriceActionPerformed
@@ -278,6 +357,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JScrollPane cartScrollPane;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel enterpriseLabel1;
     private javax.swing.JLabel jLabel1;
@@ -285,11 +365,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField messageJTextField;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JComboBox<String> restaurantComboBox;
-    private javax.swing.JScrollPane tblCart;
+    private javax.swing.JTable tblCart;
     private javax.swing.JTable tblOrder;
     private javax.swing.JTextField totalPrice;
     private javax.swing.JLabel valueLabel;

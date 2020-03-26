@@ -10,15 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventObject;
 import java.util.Vector;
-import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.event.CellEditorListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
@@ -28,7 +22,7 @@ import javax.swing.table.TableCellRenderer;
  */
 //
 
-public class ButtonColumn extends JButton implements TableCellRenderer, TableCellEditor,TableButtonListener {
+public class ButtonColumn extends JButton implements TableCellRenderer, TableCellEditor {
   private int selectedRow;
   private int selectedColumn;
   Vector<TableButtonListener> listener;
@@ -44,7 +38,6 @@ public class ButtonColumn extends JButton implements TableCellRenderer, TableCel
       }
     });
   }
-
 
 
   public void addTableButtonListener( TableButtonListener l ) {
@@ -101,11 +94,5 @@ public class ButtonColumn extends JButton implements TableCellRenderer, TableCel
     return true;
   }
 
-    @Override
-    public void tableButtonClicked(int row, int col) {
-        
-    }
-
-   
 }
 
