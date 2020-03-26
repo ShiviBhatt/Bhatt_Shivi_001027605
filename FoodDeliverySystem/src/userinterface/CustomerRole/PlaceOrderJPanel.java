@@ -20,6 +20,7 @@ import java.awt.Component;
 import java.awt.HeadlessException;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -157,6 +158,25 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
              JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
          }else{
             OrderWorkRequest orderWorkRequest = new OrderWorkRequest(); 
+            orderWorkRequest.setItemsWithQuatityList(itemsWithQuantityList);
+            orderWorkRequest.setMessage(message.getText());
+            if(customer != null){
+                orderWorkRequest.setCustomer(customer);
+            }else{
+                System.out.println("Customer is null");
+                return;
+            }
+            Restaurant restaurant = resturantDirectory.getRestaurantList().get(index);
+            if(restaurant != null){
+                orderWorkRequest.setRestaurant(restaurant);
+            }else{
+                System.out.println("Restaurant is null");
+                return;
+            }
+            orderWorkRequest.setRequestDate(new Date());
+            orderWorkRequest.setStatus("Ordered");
+            ecosystem.getWorkQueue().addWorkRequest(orderWorkRequest);
+          
          }
      }
 
@@ -194,7 +214,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
 
         requestTestJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        messageJTextField = new javax.swing.JTextField();
+        message = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
@@ -221,7 +241,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Message");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 560, -1, -1));
-        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, 89, -1));
+        add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, 89, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -328,7 +348,12 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-
+        createOrder();
+        JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
+         OrderStatusJPanel orderStatusJPanel = new OrderStatusJPanel(userProcessContainer, ecosystem,customer);
+         userProcessContainer.add("OrderStatusJPanel", orderStatusJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -365,7 +390,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField messageJTextField;
+    private javax.swing.JTextField message;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JComboBox<String> restaurantComboBox;
     private javax.swing.JTable tblCart;

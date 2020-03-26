@@ -114,6 +114,11 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         });
 
         btnOrderStatus.setText("Order Status");
+        btnOrderStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -139,9 +144,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(77, 77, 77))
+                    .addComponent(btnBack)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -150,8 +153,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(refreshTestJButton)
-                                .addGap(4, 4, 4)))
-                        .addGap(49, 49, 49)))
+                                .addGap(4, 4, 4)))))
+                .addGap(49, 49, 49)
                 .addComponent(btnPlaceOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOrderStatus)
@@ -178,10 +181,18 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-            userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnOrderStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderStatusActionPerformed
+        // TODO add your handling code here:
+            OrderStatusJPanel orderStatusJPanel = new OrderStatusJPanel(userProcessContainer, ecosystem,customer);
+            userProcessContainer.add("OrderStatusJPanel", orderStatusJPanel);
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnOrderStatusActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

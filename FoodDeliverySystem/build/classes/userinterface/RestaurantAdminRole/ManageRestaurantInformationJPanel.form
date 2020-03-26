@@ -18,26 +18,28 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="813" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="563" max="-2" attributes="0"/>
-                      <Component id="btnAcceptOrder" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="refreshTestJButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="705" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnUpdateRestaurantName" min="-2" max="-2" attributes="0"/>
+                          <Component id="editRestaurantName" min="-2" pref="235" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" pref="705" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="705" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="145" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,27 +48,23 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="97" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="refreshTestJButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAcceptOrder" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="editRestaurantName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="327" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnUpdateRestaurantName" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="250" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="MANAGE ORDER"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -74,13 +72,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="workRequestJTable">
+        <Component class="javax.swing.JTable" name="tblRestaurantInfo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="0">
-                <Column editable="false" title="Message" type="java.lang.String"/>
-                <Column editable="false" title="Sender" type="java.lang.String"/>
-                <Column editable="false" title="Status" type="java.lang.String"/>
+              <Table columnCount="1" rowCount="0">
+                <Column editable="false" title="restaurant name" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -90,13 +86,11 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="refreshTestJButton">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Refresh"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="MANAGE RESTAURANT INFORMATION"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshTestJButtonActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
       <Properties>
@@ -106,10 +100,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAcceptOrder">
+    <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Accept Order"/>
+        <Property name="text" type="java.lang.String" value="restaurant name"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="editRestaurantName">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUpdateRestaurantName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="UpdateRestaurantName"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateRestaurantNameActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

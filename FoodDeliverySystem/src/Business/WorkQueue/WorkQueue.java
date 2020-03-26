@@ -53,8 +53,8 @@ public class WorkQueue {
     public List<WorkRequest> getWorkRequestListDeliveryMan(UserAccount account){
         List<WorkRequest> workRequestListDelivery = new ArrayList<>();
         for(WorkRequest workRequest : workRequestList){
-            if(workRequest.getDeliveryMan()!= null){
-                UserAccount deliveryManAccount = workRequest.getDeliveryMan();
+            if(workRequest.getDeliverMan()!= null){
+                UserAccount deliveryManAccount = workRequest.getDeliverMan();
                 if(deliveryManAccount.getUsername().equals(account.getUsername())){
                     workRequestListDelivery.add(workRequest);
                 }

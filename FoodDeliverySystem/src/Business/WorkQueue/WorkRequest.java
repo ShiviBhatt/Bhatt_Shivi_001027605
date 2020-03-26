@@ -3,6 +3,9 @@
  * and open the template in the editor.
  */
 package Business.WorkQueue;
+import Business.Customer.Customer;
+import Business.DeliveryMan.DeliveryMan;
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -13,9 +16,9 @@ import java.util.Date;
 public abstract class WorkRequest {
 
     private String message;
-    private UserAccount customer;
-    private UserAccount restaurant;
-    private UserAccount deliverMan;
+    private Customer customer;
+    private Restaurant restaurant;
+    private DeliveryMan deliverMan;
     private String status;
     private Date requestDate;
     private Date resolveDate;
@@ -33,27 +36,27 @@ public abstract class WorkRequest {
         this.message = message;
     }
 
-    public UserAccount getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(UserAccount customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public UserAccount getRestaurant() {
+    public Restaurant getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(UserAccount restaurant) {
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 
-    public UserAccount getDeliveryMan() {
+    public DeliveryMan getDeliverMan() {
         return deliverMan;
     }
 
-    public void setDeliverMan(UserAccount deliverMan) {
+    public void setDeliverMan(DeliveryMan deliverMan) {
         this.deliverMan = deliverMan;
     }
 
@@ -79,5 +82,9 @@ public abstract class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+    
+    public String toString(){
+        return this.message;
     }
 }

@@ -53,7 +53,8 @@ public class Restaurant extends UserAccount{
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
-      @Override
+    
+    @Override
     public String toString() {
         return this.name;
     }

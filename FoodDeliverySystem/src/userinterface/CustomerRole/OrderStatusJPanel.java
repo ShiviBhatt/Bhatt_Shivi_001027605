@@ -6,9 +6,19 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
+import Business.Restaurant.Item;
 import Business.Restaurant.Menu;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ItemWithQuantity;
+import Business.WorkQueue.OrderWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,31 +31,55 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private EcoSystem ecosystem;
-    public OrderStatusJPanel(JPanel userProcessContainer, EcoSystem ecosystem) {
+    private UserAccount account;
+    private List<WorkRequest> workRequestList;
+
+    public OrderStatusJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount account) {
         initComponents();
+        initListners();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
-           populateRequestTable();
+        this.account = account;
+        populateRequestTable();
     }
 
-      public void populateRequestTable(){
-        Menu itemList = ecosystem.getItemList();
-       // DefaultTableModel model = (DefaultTableModel) tblCustomerWorkRequest.getModel();
-//        model.setRowCount(0);
-//        for (Item  item : itemList.getItemList()) {
-//                    Object[] row = new Object[6];
-//                    row[0] = "";
-//                    row[1] = "";
-//                    row[2] = "";
-//                    row[3] = "";
-//                    row[4] = item;
-//                    row[5] = item.getPrice();
-//                    
-//                    
-//                    model.addRow(row);
-//            }
-        
+    public void populateRequestTable() {
+        //Menu itemList = ecosystem.getItemList();
+        DefaultTableModel model = (DefaultTableModel) tblCustomerOrderStatus.getModel();
+        model.setRowCount(0);
+        workRequestList = ecosystem.getWorkQueue().getWorkRequestListCustomer(account);
+        for (WorkRequest request : workRequestList) {
+            Object[] row = new Object[tblCustomerOrderStatus.getColumnCount()];
+            row[0] = request;
+            row[1] = request.getRestaurant();
+            row[2] = request.getStatus();
+            row[3] = request.getRequestDate();
+            model.addRow(row);
+        }
+
     }
+
+    private void initListners() {
+        tblCustomerOrderStatus.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblCustomerOrderStatus.getSelectedRow();
+                if (selectedRow >= 0) {
+                    WorkRequest request = (WorkRequest) tblCustomerOrderStatus.getValueAt(selectedRow, 0);
+                    if (request instanceof OrderWorkRequest) {
+                        OrderWorkRequest orderWorkRequest = (OrderWorkRequest) tblCustomerOrderStatus.getValueAt(selectedRow, 0);
+                        if (orderWorkRequest != null) {
+                           OrderDetailsJPanel orderDetailsJPanel = new OrderDetailsJPanel(userProcessContainer,ecosystem,account,orderWorkRequest);
+                           userProcessContainer.add("OrderDetailsJPanel", orderDetailsJPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
+                        }
+                    }
+
+                }
+            }
+        });
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +91,7 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCustomerWorkRequest = new javax.swing.JTable();
+        tblCustomerOrderStatus = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
 
@@ -67,12 +101,12 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
         jLabel1.setText("ORDER STATUS");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 29, 791, -1));
 
-        tblCustomerWorkRequest.setModel(new javax.swing.table.DefaultTableModel(
+        tblCustomerOrderStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Message", "Restaurant name", "Status", "Request Date"
             }
         ) {
             Class[] types = new Class [] {
@@ -90,7 +124,7 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblCustomerWorkRequest);
+        jScrollPane1.setViewportView(tblCustomerOrderStatus);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 680, 140));
 
@@ -103,15 +137,25 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
         add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+            CustomerAreaJPanel customerAreaJPanel = new CustomerAreaJPanel(userProcessContainer,account,ecosystem );
+            userProcessContainer.add("CustomerAreaJPanel", customerAreaJPanel);
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -119,6 +163,6 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblCustomerWorkRequest;
+    private javax.swing.JTable tblCustomerOrderStatus;
     // End of variables declaration//GEN-END:variables
 }
