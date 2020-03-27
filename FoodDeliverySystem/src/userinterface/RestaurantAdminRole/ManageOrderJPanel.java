@@ -67,7 +67,6 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         tblRestaurantWorkRequest = new javax.swing.JTable();
         refreshTestJButton = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btnAcceptOrder = new javax.swing.JButton();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MANAGE ORDER");
@@ -111,13 +110,6 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnAcceptOrder.setText("Order Details");
-        btnAcceptOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAcceptOrderActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,9 +120,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                         .addGap(23, 23, 23)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(563, 563, 563)
-                        .addComponent(btnAcceptOrder)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(696, 696, 696)
                         .addComponent(refreshTestJButton))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -150,16 +140,14 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refreshTestJButton)
-                    .addComponent(btnAcceptOrder))
+                .addComponent(refreshTestJButton)
                 .addContainerGap(327, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
 
-        //populateRequestTable();
+        populatRestaurantRequestTable();
 
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
@@ -169,10 +157,6 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnAcceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptOrderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAcceptOrderActionPerformed
         private void initListners() {
         tblRestaurantWorkRequest.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
@@ -195,7 +179,6 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAcceptOrder;
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

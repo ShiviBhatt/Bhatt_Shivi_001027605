@@ -23,10 +23,6 @@
                       <Component id="btnBack1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="jLabel12" min="-2" pref="660" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
@@ -35,11 +31,11 @@
                                   <Component id="jLabel14" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" pref="117" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="status" min="-2" pref="186" max="-2" attributes="0"/>
-                                  <Component id="requestDate" min="-2" pref="186" max="-2" attributes="0"/>
-                                  <Component id="restaurantName" min="-2" pref="207" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="restaurantName" alignment="1" pref="213" max="32767" attributes="0"/>
+                                  <Component id="requestDate" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="status" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -47,31 +43,29 @@
                                   <Component id="assignDeliveryPersonLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="deliveryManLabel" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                                      <Component id="deliveryManNameValue" min="-2" pref="186" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
                                       <Component id="assignDeliveryPerson" min="-2" pref="137" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="addDeliveryPerson" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="deliveryManNameValue" min="-2" pref="192" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="cartScrollPane1" alignment="0" pref="660" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel9" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="totalPrice" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="totalPrice" min="-2" pref="127" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="message" min="-2" pref="265" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                           <Component id="customerFeedBackPanel" max="32767" attributes="0"/>
+                          <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -96,7 +90,7 @@
                   <Component id="assignDeliveryPersonLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="addDeliveryPerson" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="deliveryManLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="deliveryManNameValue" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -129,7 +123,7 @@
               <Component id="acceptOrder" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="customerFeedBackPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="64" max="32767" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -27,7 +27,7 @@
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                              <Component id="totalPrice" min="-2" max="-2" attributes="0"/>
+                              <Component id="totalPrice" min="-2" pref="131" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
                                       <Component id="restaurantName" pref="207" max="32767" attributes="0"/>
                                       <Component id="deliveryManName" max="32767" attributes="0"/>
                                       <Component id="requestDate" max="32767" attributes="0"/>
-                                      <Component id="status" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                                      <Component id="status" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
