@@ -45,6 +45,7 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
         deliveryManDirectory = ecosystem.getDeliveryManDirectory();
         populateDeliveryManList(deliveryManDirectory.getDeliveryManList());
         changeButtonText();
+        setVisibleEditable();
         display();
     }
 
@@ -127,6 +128,10 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
         assignDeliveryPerson = new javax.swing.JComboBox<>();
         assignDeliveryPersonLabel = new javax.swing.JLabel();
         addDeliveryPerson = new javax.swing.JButton();
+        customerFeedBackPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        customerFeedbackField = new javax.swing.JTextArea();
+        customerFeedbackLabel = new javax.swing.JLabel();
 
         jLabel4.setText("Restaurant Name");
 
@@ -209,6 +214,35 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        customerFeedbackField.setColumns(20);
+        customerFeedbackField.setRows(5);
+        jScrollPane1.setViewportView(customerFeedbackField);
+
+        customerFeedbackLabel.setText("Customer Feedback");
+
+        javax.swing.GroupLayout customerFeedBackPanelLayout = new javax.swing.GroupLayout(customerFeedBackPanel);
+        customerFeedBackPanel.setLayout(customerFeedBackPanelLayout);
+        customerFeedBackPanelLayout.setHorizontalGroup(
+            customerFeedBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerFeedBackPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customerFeedbackLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        customerFeedBackPanelLayout.setVerticalGroup(
+            customerFeedBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerFeedBackPanelLayout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(customerFeedBackPanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(customerFeedbackLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -247,23 +281,21 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
                                         .addComponent(assignDeliveryPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(addDeliveryPerson))))
-                            .addComponent(cartScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cartScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(totalPrice)
                                 .addGap(136, 136, 136)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(acceptOrder)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15))
+                            .addComponent(customerFeedBackPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(319, 319, 319)
+                        .addComponent(acceptOrder)))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,9 +333,11 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
                     .addComponent(totalPrice)
                     .addComponent(jLabel10)
                     .addComponent(message))
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(acceptOrder)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(customerFeedBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -321,7 +355,9 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
             workRequest.setStatus("Preparing"); 
         }else if(workRequest.getStatus().equals("Preparing")){
              workRequest.setStatus("Prepared");
-        }else{
+        }else if (workRequest.getStatus().equalsIgnoreCase("delivered")){
+                setVisibleEditable();
+        }else{  
             acceptOrder.setVisible(false);
         }
         changeButtonText();
@@ -359,6 +395,24 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
         }
     }
     
+      private void setVisibleEditable(){
+        if(workRequest.getStatus().equalsIgnoreCase("delivered")){
+            customerFeedBackPanel.setVisible(true);
+            customerFeedbackField.setVisible(true);
+            customerFeedbackField.setEditable(true);
+            if(workRequest.getCustomerFeedback() != null){
+                customerFeedbackField.setText(workRequest.getCustomerFeedback());
+                customerFeedbackField.setEditable(false);
+              
+            }
+        }else{
+            customerFeedBackPanel.setVisible(false);
+            customerFeedbackField.setVisible(false);
+            customerFeedbackField.setEditable(false);
+           
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptOrder;
     private javax.swing.JButton addDeliveryPerson;
@@ -366,6 +420,9 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel assignDeliveryPersonLabel;
     private javax.swing.JButton btnBack1;
     private javax.swing.JScrollPane cartScrollPane1;
+    private javax.swing.JPanel customerFeedBackPanel;
+    private javax.swing.JTextArea customerFeedbackField;
+    private javax.swing.JLabel customerFeedbackLabel;
     private javax.swing.JLabel deliveryManLabel;
     private javax.swing.JLabel deliveryManNameValue;
     private javax.swing.JLabel jLabel10;
@@ -374,6 +431,7 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel message;
     private javax.swing.JLabel requestDate;
     private javax.swing.JLabel restaurantName;

@@ -18,15 +18,13 @@ import javax.swing.JPanel;
  *
  * @author raunak
  */
-
-
 public class ProcessOrderJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccount account;
     OrderWorkRequest workRequest;
-   
+
     //LabTestWorkRequest request;
     /**
      * Creates new form ProcessWorkRequestJPanel
@@ -34,18 +32,17 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
     public ProcessOrderJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount account, OrderWorkRequest workRequest) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem= ecosystem;
-        this.account=account;
-        this.workRequest=workRequest;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        this.workRequest = workRequest;
         customerAddressValue.setEditable(false);
         restaurantAddressValue.setEditable(false);
         changeButtonText();
         display();
     }
-    
-        private void display() {
 
-        
+    private void display() {
+
         restaurantNameValue.setText(workRequest.getRestaurant().getName());
         restaurantAddressValue.setText(workRequest.getRestaurant().getAddress());
         customerNameValue.setText(workRequest.getCustomer().getName());
@@ -53,16 +50,15 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
         status.setText(workRequest.getStatus());
 
     }
-        
-        
+
     private void changeButtonText() {
-        switch(workRequest.getStatus()){
+        switch (workRequest.getStatus()) {
             case "Prepared":
-                  btnStatus.setText("Pick Order");
-                  break;
+                btnStatus.setText("Pick Order");
+                break;
             case "Out for delivery":
-                  btnStatus.setText("Complete Delivery");
-                  break;
+                btnStatus.setText("Complete Delivery");
+                break;
             default:
                 btnStatus.setVisible(false);
         }
@@ -205,20 +201,18 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        DeliveryManWorkAreaJPanel dwjp = (DeliveryManWorkAreaJPanel) component;
+        DeliveryManWorkAreaJPanel deliveryManWorkAreaJPanel = new DeliveryManWorkAreaJPanel(userProcessContainer, account, ecosystem);
+        userProcessContainer.add("DeliveryManWorkAreaJPanel", deliveryManWorkAreaJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
-         if (workRequest.getStatus().equals("Prepared")) {
-            workRequest.setStatus("Out for delivery"); 
-        }else if(workRequest.getStatus().equals("Out for delivery")){
-             workRequest.setStatus("Delivered");
-        }else{
+        if (workRequest.getStatus().equals("Prepared")) {
+            workRequest.setStatus("Out for delivery");
+        } else if (workRequest.getStatus().equals("Out for delivery")) {
+            workRequest.setStatus("Delivered");
+        } else {
             btnStatus.setVisible(false);
         }
         changeButtonText();
