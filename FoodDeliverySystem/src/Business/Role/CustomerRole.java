@@ -21,5 +21,4 @@ public class CustomerRole extends Role{
         return new CustomerWorkAreaJPanel(userProcessContainer, account, business);
     }
     
-    
 }

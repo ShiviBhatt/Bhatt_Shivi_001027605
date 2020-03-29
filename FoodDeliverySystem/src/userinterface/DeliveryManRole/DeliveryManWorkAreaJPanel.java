@@ -86,7 +86,9 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDeliveryManWorkRequest = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(240, 178, 62));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblDeliveryManWorkRequest.setModel(new javax.swing.table.DefaultTableModel(
@@ -123,10 +125,16 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             tblDeliveryManWorkRequest.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 840, 96));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 760, 410));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("ORDER TO DELIVER");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 790, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDeliveryManWorkRequest;
     // End of variables declaration//GEN-END:variables

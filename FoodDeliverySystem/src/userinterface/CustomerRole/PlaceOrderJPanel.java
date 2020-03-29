@@ -61,6 +61,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             index = 0;
             populateMenu();
         }
+        totalPrice.setEditable(false);
 
     }
 
@@ -111,10 +112,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                     Item item = (Item) tblOrder.getValueAt(selectedRow, 0);
                     if (item != null) {
                         String response = JOptionPane.showInputDialog("Please provide Quantity");
-                        try{
+                        try {
                             quantity = Integer.parseInt(response);
-                        }catch(NumberFormatException e){
-                            
+                        } catch (NumberFormatException e) {
+
                         }
                         if (quantity != 0) {
                             ItemWithQuantity itemWithQuantity = new ItemWithQuantity(item, quantity);
@@ -128,11 +129,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             }
         });
     }
-    
-    
-     private void populateItemsWithQuantityTable() {
+
+    private void populateItemsWithQuantityTable() {
         double total = 0.0;
-        cartTable.setRowCount(0);   
+        cartTable.setRowCount(0);
         for (ItemWithQuantity itemWithQuantity : itemsWithQuantityList) {
             Object[] row = new Object[cartTable.getColumnCount()];
             row[0] = itemWithQuantity;
@@ -142,35 +142,37 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             cartTable.addRow(row);
         }
         totalPrice.setText(total + "");
-     }
-     
-     
-     private void createOrder(){
-         if(itemsWithQuantityList.isEmpty()){
-             JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
-         }else{
-            OrderWorkRequest orderWorkRequest = new OrderWorkRequest(); 
+    }
+
+    private boolean createOrder() {
+
+        if (itemsWithQuantityList.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
+            return false;
+        } else {
+            OrderWorkRequest orderWorkRequest = new OrderWorkRequest();
             orderWorkRequest.setItemsWithQuatityList(itemsWithQuantityList);
             orderWorkRequest.setMessage(message.getText());
-            if(customer != null){
+            if (customer != null) {
                 orderWorkRequest.setCustomer(customer);
-            }else{
+            } else {
                 System.out.println("Customer is null");
-                return;
+                return false;
             }
             Restaurant restaurant = resturantDirectory.getRestaurantList().get(index);
-            if(restaurant != null){
+            if (restaurant != null) {
                 orderWorkRequest.setRestaurant(restaurant);
-            }else{
+            } else {
                 System.out.println("Restaurant is null");
-                return;
+                return false;
             }
             orderWorkRequest.setRequestDate(new Date());
             orderWorkRequest.setStatus("Ordered");
             ecosystem.getWorkQueue().addWorkRequest(orderWorkRequest);
-          
-         }
-     }
+            return true;
+
+        }
+    }
 
 //    private void createAddToCartButton(){
 //        ButtonColumn addToCartButton = new ButtonColumn("Add to Cart");
@@ -217,7 +219,9 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         totalPrice = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(240, 178, 62));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         requestTestJButton.setText("Request Order");
@@ -319,15 +323,23 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             }
         });
         add(totalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, 150, 30));
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("PLACE ORDER");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 740, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        createOrder();
-        JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
-         OrderStatusJPanel orderStatusJPanel = new OrderStatusJPanel(userProcessContainer, ecosystem,customer);
-         userProcessContainer.add("OrderStatusJPanel", orderStatusJPanel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        if (createOrder()) {
+            JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
+            OrderStatusJPanel orderStatusJPanel = new OrderStatusJPanel(userProcessContainer, ecosystem, customer);
+            userProcessContainer.add("OrderStatusJPanel", orderStatusJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
+
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
     private void restaurantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurantComboBoxActionPerformed
@@ -349,6 +361,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField message;
     private javax.swing.JButton requestTestJButton;

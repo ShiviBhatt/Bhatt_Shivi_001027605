@@ -5,17 +5,12 @@ package userinterface.CustomerRole;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import userinterface.SystemAdminWorkArea.*;
 import Business.EcoSystem;
 
-import Business.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.JPanel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -41,12 +36,6 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
         placeOrder();
     }
 
-//    public void populateTree(){
-//        DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
-//       // Add the code for draw your system structure shown by JTree
-//       
-//        model.reload();
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
