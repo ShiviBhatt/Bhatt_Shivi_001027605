@@ -223,6 +223,8 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        customerFeedBackPanel.setBackground(new java.awt.Color(240, 178, 62));
+
         customerFeedbackField.setColumns(20);
         customerFeedbackField.setRows(5);
         jScrollPane1.setViewportView(customerFeedbackField);
@@ -291,9 +293,7 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
                                         .addComponent(assignDeliveryPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(addDeliveryPerson))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, 0)
-                                        .addComponent(deliveryManNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(deliveryManNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(cartScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)

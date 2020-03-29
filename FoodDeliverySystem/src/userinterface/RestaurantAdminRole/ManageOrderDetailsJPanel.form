@@ -55,10 +55,7 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="addDeliveryPerson" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="deliveryManNameValue" min="-2" pref="186" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="deliveryManNameValue" min="-2" pref="186" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="cartScrollPane1" alignment="0" pref="660" max="32767" attributes="0"/>
@@ -274,6 +271,11 @@
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="customerFeedBackPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="3e" green="b2" red="f0" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
