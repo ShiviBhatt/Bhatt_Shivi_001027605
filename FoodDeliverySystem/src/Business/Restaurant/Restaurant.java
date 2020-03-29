@@ -26,7 +26,6 @@ public class Restaurant extends UserAccount{
         this.address = address;
         this.phone = phone;
         this.menu = new Menu();
-     
     }
 
     public Restaurant(){

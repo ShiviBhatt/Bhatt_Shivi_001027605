@@ -7,6 +7,7 @@ package userinterface.RestaurantAdminRole;
 
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,18 +19,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author shivibhatt
  */
-
 public class ManageRestaurantInformationJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageRestaurantInformationJPanel
      */
-     JPanel userProcessContainer;
+    JPanel userProcessContainer;
     EcoSystem ecosystem;
-    public ManageRestaurantInformationJPanel(JPanel userProcessContainer, EcoSystem ecosystem) {
+    Restaurant restaurant;
+
+    public ManageRestaurantInformationJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount userAccount) {
         initComponents();
+        initListners();
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem=ecosystem;
+        this.ecosystem = ecosystem;
+        restaurant = (Restaurant) userAccount;
         populateTable();
     }
 
@@ -145,55 +149,39 @@ public class ManageRestaurantInformationJPanel extends javax.swing.JPanel {
 
     private void btnUpdateRestaurantNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateRestaurantNameActionPerformed
         // TODO add your handling code here:
-             System.out.println("Shivi 1");
-           int selectedRow = tblRestaurantInfo.getSelectedRow();
-        if (selectedRow >= 0) {
-            System.out.println("xyz" + selectedRow);
-            System.out.println("Shivi 2");
-            Restaurant restaurant = (Restaurant) tblRestaurantInfo.getValueAt(selectedRow, 0);
-            System.out.println("item : "+ restaurant);
-            //System.out.println(itemName.getName());
-            restaurant.setName(editRestaurantName.getText());
-           
-             populateTable();
-             editRestaurantName.setText("");
-       
-            
-       
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a row");
-        }
+     restaurant.setName(editRestaurantName.getText());
+     populateTable();
+     System.out.println("GET RESTAURANT " + restaurant.getName());
+     
     }//GEN-LAST:event_btnUpdateRestaurantNameActionPerformed
-     private void  populateTable(){
-          // Menu itemList = ecosystem.getItemList();
+    private void populateTable() {
+        // Menu itemList = ecosystem.getItemList();
         DefaultTableModel model = (DefaultTableModel) tblRestaurantInfo.getModel();
         model.setRowCount(0);
-        for (Restaurant  restaurant : ecosystem.getRestaurantDirectory().getRestaurantList()) {
-                    Object[] row = new Object[1];
-                    row[0] = restaurant;
-                  
-                    model.addRow(row);
-            }
-    }
-     
-      private void display(Restaurant restaurant){
-        System.out.println("Shivi");
-        editRestaurantName.setText(restaurant.getName());
-  
+        Object[] row = new Object[1];
+        row[0] = restaurant;
+
+        model.addRow(row);
 
     }
- private void initListners() {
-       tblRestaurantInfo.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-        public void valueChanged(ListSelectionEvent event) {
-           int selectedRow = tblRestaurantInfo.getSelectedRow();
-             if (selectedRow >= 0) {
-                 Restaurant restaurant = (Restaurant) tblRestaurantInfo.getValueAt(selectedRow, 0);
-                 if(restaurant!=null){
-                     display(restaurant);
-                 }
-             }
-        }
-    });
+
+    private void display(Restaurant restaurant) {
+        editRestaurantName.setText(restaurant.getName());
+
+    }
+
+    private void initListners() {
+        tblRestaurantInfo.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblRestaurantInfo.getSelectedRow();
+                if (selectedRow >= 0) {
+                    Restaurant restaurant = (Restaurant) tblRestaurantInfo.getValueAt(selectedRow, 0);
+                    if (restaurant != null) {
+                        display(restaurant);
+                    }
+                }
+            }
+        });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

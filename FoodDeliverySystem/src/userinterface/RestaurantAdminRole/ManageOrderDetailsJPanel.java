@@ -8,7 +8,6 @@ package userinterface.RestaurantAdminRole;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
-import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ItemWithQuantity;
 import Business.WorkQueue.OrderWorkRequest;
@@ -72,7 +71,8 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
     }
 
     private void populateDeliveryManUI() {
-        if(workRequest.getDeliverMan() == null){
+        if(workRequest.getDeliverMan() == null &&  
+                !("ordered".equalsIgnoreCase(workRequest.getStatus()) || "declined".equalsIgnoreCase(workRequest.getStatus()))){
             assignDeliveryPersonLabel.setVisible(true);
             assignDeliveryPerson.setVisible(true);
             addDeliveryPerson.setVisible(true);
@@ -84,7 +84,11 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
             addDeliveryPerson.setVisible(false);
             deliveryManNameValue.setVisible(true);
             deliveryManLabel.setVisible(true);
-            deliveryManNameValue.setText(workRequest.getDeliverMan().getName());
+            if(workRequest.getDeliverMan() != null){
+                deliveryManNameValue.setText(workRequest.getDeliverMan().getName());
+            }else{
+              deliveryManNameValue.setText("Not Assigned");  
+            }
         }
     }
     
@@ -132,6 +136,7 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         customerFeedbackField = new javax.swing.JTextArea();
         customerFeedbackLabel = new javax.swing.JLabel();
+        declineOrder = new javax.swing.JButton();
 
         jLabel4.setText("Restaurant Name");
 
@@ -243,6 +248,18 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        declineOrder.setText("Decline Order");
+        declineOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                declineOrderMousePressed(evt);
+            }
+        });
+        declineOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                declineOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -290,7 +307,9 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(319, 319, 319)
-                        .addComponent(acceptOrder)))
+                        .addComponent(acceptOrder)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(declineOrder)))
                 .addContainerGap(134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -330,7 +349,9 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel10)
                     .addComponent(message))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(acceptOrder)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acceptOrder)
+                    .addComponent(declineOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(customerFeedBackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE))
@@ -378,15 +399,32 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_addDeliveryPersonActionPerformed
 
+    private void declineOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineOrderActionPerformed
+        declineOrder();
+    }//GEN-LAST:event_declineOrderActionPerformed
+
+    private void declineOrderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_declineOrderMousePressed
+        declineOrder();
+    }//GEN-LAST:event_declineOrderMousePressed
+
+    private void declineOrder(){
+        workRequest.setStatus("Declined");
+        changeButtonText();
+        status.setText(workRequest.getStatus());
+    }
+    
     private void changeButtonText() {
         switch(workRequest.getStatus()){
             case "Ordered":
                   acceptOrder.setText("Accept order");
+                  declineOrder.setVisible(true);
                   break;
             case "Preparing":
                   acceptOrder.setText("Ready for delivery");
+                  declineOrder.setVisible(false);
                   break;
             default:
+                declineOrder.setVisible(false);
                 acceptOrder.setVisible(false);
         }
     }
@@ -419,6 +457,7 @@ public class ManageOrderDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel customerFeedBackPanel;
     private javax.swing.JTextArea customerFeedbackField;
     private javax.swing.JLabel customerFeedbackLabel;
+    private javax.swing.JButton declineOrder;
     private javax.swing.JLabel deliveryManLabel;
     private javax.swing.JLabel deliveryManNameValue;
     private javax.swing.JLabel jLabel10;

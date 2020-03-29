@@ -7,13 +7,9 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
 
-import Business.Organization;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.JPanel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 
 /**
  *

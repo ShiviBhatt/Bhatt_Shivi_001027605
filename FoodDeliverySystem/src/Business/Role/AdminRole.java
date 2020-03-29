@@ -6,11 +6,9 @@ package Business.Role;
 
 import Business.EcoSystem;
 
-import Business.Organization;
-import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
-import userinterface.RestaurantAdminRole.AdminWorkAreaJPanel;
 import javax.swing.JPanel;
+import userinterface.RestaurantAdminRole.RestaurantAdminWorkAreaJPanel;
 
 /**
  *
@@ -20,7 +18,7 @@ public class AdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
-        return new AdminWorkAreaJPanel(userProcessContainer, account, ecosystem);
+        return new RestaurantAdminWorkAreaJPanel(userProcessContainer, account, ecosystem);
     }
  
 }

@@ -208,7 +208,9 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         }
 
         if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(createUserName.getText())) {
-            Restaurant restaurant = new Restaurant(createUserName.getText(), createPassword.getText(), createRestaurantName.getText(), restaurantAddress.getText(),restaurantPhone.getText());
+            Restaurant restaurant = new Restaurant(createUserName.getText(),
+                    createPassword.getText(), createRestaurantName.getText(),
+                    restaurantAddress.getText(),restaurantPhone.getText());
             ecosystem.getUserAccountDirectory().addUserAccount(restaurant);
             ecosystem.getRestaurantDirectory().addRestaurant(restaurant);
             populateTable();
@@ -279,9 +281,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             row[0] = restaurant;
             row[1] = restaurant.getUsername();
             row[2] = restaurant.getPassword();
-
             model.addRow(row);
-
         }
     }
 
@@ -305,6 +305,8 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         createUserName.setText(restaurant.getUsername());
         createPassword.setText(restaurant.getPassword());
         createRestaurantName.setText(restaurant.getName());
+        restaurantAddress.setText(restaurant.getAddress());
+        restaurantPhone.setText(restaurant.getPhone());
         
 
     }
