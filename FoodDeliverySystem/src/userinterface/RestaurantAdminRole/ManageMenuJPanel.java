@@ -33,11 +33,11 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     UserAccount account;
     Restaurant restaurant;
 
-    public ManageMenuJPanel(JPanel userProcessContainer, UserAccount account ,EcoSystem ecosystem) {
+    public ManageMenuJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
         initListners();
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem=ecosystem;
+        this.ecosystem = ecosystem;
         this.account = account;
         restaurant = (Restaurant) account;
         populateTable();
@@ -55,7 +55,6 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMenu = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         itemName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -63,6 +62,9 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         btnAddItem = new javax.swing.JButton();
         btnUpdateItem = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 178, 62));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MANAGE MENU");
 
@@ -91,13 +93,6 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblMenu);
 
-        btnBack.setText("<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Item Name");
 
         jLabel3.setText("Item Price");
@@ -121,40 +116,37 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(itemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnUpdateItem, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))))
+                            .addComponent(jScrollPane1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(itemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnUpdateItem, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,54 +155,58 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(itemPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUpdateItem)
-                    .addComponent(btnAddItem))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddItem)
+                    .addComponent(btnUpdateItem))
+                .addGap(122, 122, 122))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         // TODO add your handling code here:
-           if( itemName.getText().isEmpty()||itemPrice.getText().isEmpty())
-        {
+        if (itemName.getText().isEmpty() || itemPrice.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "please enter all mandatory fields");
             return;
         }
-          
-           Item item = new Item(itemName.getText(), Double.valueOf(itemPrice.getText()));
-           
-         // ecosystem.getItemList().addItem(item);
-            restaurant.getMenu().addItem(item);
-            populateTable();
-            itemName.setText("");
-            itemPrice.setText("");  
-          
+        for (Item item : restaurant.getMenu().getItemList()) {
+            if (itemName.getText().equals(item.getName())) {
+                JOptionPane.showMessageDialog(null, " Duplicate Items not allowed");
+                return;
+            }
+        }
+        double price = 0.0;
+        try {
+            price = Double.valueOf(itemPrice.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, " Please enter a decimal number for Item Price!!");
+            return;
+        }
+
+        Item item = new Item(itemName.getText(), Double.valueOf(itemPrice.getText()));
+
+        // ecosystem.getItemList().addItem(item);
+        restaurant.getMenu().addItem(item);
+        populateTable();
+        itemName.setText("");
+        itemPrice.setText("");
+
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void btnUpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateItemActionPerformed
         // TODO add your handling code here:
         System.out.println("Shivi 1");
-           int selectedRow = tblMenu.getSelectedRow();
+        int selectedRow = tblMenu.getSelectedRow();
         if (selectedRow >= 0) {
             System.out.println("xyz" + selectedRow);
             System.out.println("Shivi 2");
             Item item = (Item) tblMenu.getValueAt(selectedRow, 0);
-            System.out.println("item : "+ item);
+            System.out.println("item : " + item);
             item.setName(itemName.getText());
             item.setPrice(Double.valueOf(itemPrice.getText()));
-             populateTable();
-             itemName.setText("");
+            populateTable();
+            itemName.setText("");
             itemPrice.setText("");
-            
-       
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
@@ -220,16 +216,16 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
         model.setRowCount(0);
         for (Item item : menu.getItemList()) {
-          
-                Object[] row = new Object[2];
-                row[0] = item;
-                row[1] = item.getPrice();
-                model.addRow(row);
 
-            
+            Object[] row = new Object[2];
+            row[0] = item;
+            row[1] = item.getPrice();
+            model.addRow(row);
+
         }
     }
-    private void display(Item item){
+
+    private void display(Item item) {
         System.out.println("Shivi");
         itemName.setText(item.getName());
         itemPrice.setText(Double.valueOf(item.getPrice()) + "");
@@ -238,7 +234,6 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnUpdateItem;
     private javax.swing.JTextField itemName;
     private javax.swing.JTextField itemPrice;
@@ -250,18 +245,17 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initListners() {
-       tblMenu.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-        public void valueChanged(ListSelectionEvent event) {
-           int selectedRow = tblMenu.getSelectedRow();
-             if (selectedRow >= 0) {
-                 Item item = (Item) tblMenu.getValueAt(selectedRow, 0);
-                 if(item!=null){
-                     display(item);
-                 }
-             }
-        }
-    });
+        tblMenu.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblMenu.getSelectedRow();
+                if (selectedRow >= 0) {
+                    Item item = (Item) tblMenu.getValueAt(selectedRow, 0);
+                    if (item != null) {
+                        display(item);
+                    }
+                }
+            }
+        });
     }
-    
-    
+
 }

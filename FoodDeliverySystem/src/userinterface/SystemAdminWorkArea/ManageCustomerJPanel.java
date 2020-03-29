@@ -32,10 +32,10 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     UserAccountDirectory userAccountList;
    
-    public ManageCustomerJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+    public ManageCustomerJPanel(JPanel parentContainerPanel,EcoSystem ecosystem) {
         initComponents();
         initListners();
-        this.userProcessContainer=userProcessContainer;
+        this.userProcessContainer=parentContainerPanel;
         this.ecosystem=ecosystem;
          populateTable();
      
@@ -64,16 +64,19 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         btnCreateCustomer = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         createPhone = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(240, 178, 62));
+        setPreferredSize(new java.awt.Dimension(920, 708));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "name", "address", "phone", "username", "password"
+                "Name", "Address", "Phone", "Username", "Password"
             }
         ) {
             Class[] types = new Class [] {
@@ -93,22 +96,34 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCustomer);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Manage Customer");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 643, 165));
 
-        jLabel2.setText("username");
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Manage Customers");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 36, 643, -1));
+
+        jLabel2.setText("Username");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 271, -1, -1));
 
         createUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createUserNameActionPerformed(evt);
             }
         });
+        add(createUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 266, 259, -1));
 
-        jLabel3.setText("password");
+        jLabel3.setText("Password");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 309, -1, -1));
+        add(createPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 304, 259, -1));
 
-        jLabel4.setText("name");
+        jLabel4.setText("Name");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 347, -1, -1));
+        add(createName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 342, 259, -1));
 
-        jLabel5.setText("address");
+        jLabel5.setText("Address");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 385, -1, -1));
+        add(createAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 259, -1));
 
         btnCreateCustomer.setText("Create");
         btnCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -116,13 +131,15 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 btnCreateCustomerActionPerformed(evt);
             }
         });
+        add(btnCreateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 464, -1, -1));
 
-        btnModify.setText("modify");
+        btnModify.setText("Modify");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyActionPerformed(evt);
             }
         });
+        add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 464, 82, -1));
 
         btnDelete.setText("delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -130,101 +147,16 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-
-        btnBack.setText("<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 464, 73, -1));
 
         jLabel6.setText("Phone");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(createUserName)
-                            .addComponent(createPassword)
-                            .addComponent(createName)
-                            .addComponent(createAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                            .addComponent(createPhone)))
-                    .addComponent(btnBack))
-                .addContainerGap(166, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 254, Short.MAX_VALUE)
-                .addComponent(btnCreateCustomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(384, 384, 384))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(1, 1, 1)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(createUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(createPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(createName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(createAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(createPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreateCustomer)
-                    .addComponent(btnModify)
-                    .addComponent(btnDelete))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 423, -1, -1));
+        add(createPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 418, 259, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_createUserNameActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed
         // TODO add your handling code here:
@@ -340,7 +272,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateCustomer;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;

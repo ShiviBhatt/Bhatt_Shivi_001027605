@@ -7,6 +7,7 @@ package userinterface.RestaurantAdminRole;
 
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,20 +19,37 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author shivibhatt
  */
-
 public class ManageRestaurantInformationJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageRestaurantInformationJPanel
      */
-     JPanel userProcessContainer;
+    JPanel userProcessContainer;
     EcoSystem ecosystem;
-    public ManageRestaurantInformationJPanel(JPanel userProcessContainer, EcoSystem ecosystem) {
-        initComponents();
+    UserAccount userAccount;
+    Restaurant restaurant;
+
+    public ManageRestaurantInformationJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount userAccount) {
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem=ecosystem;
-        populateTable();
+        this.ecosystem = ecosystem;
+        this.userAccount = userAccount;
+        //getRestaurantObjectFromList();
+        restaurant = (Restaurant)userAccount;
+        initComponents();
+        display(restaurant);
+        //populateTable();
+//        initListners();
+       confirmButton.setVisible(false);
+       resetButton.setVisible(false);
     }
+    
+//    private void getRestaurantObjectFromList() {
+//        for (Restaurant restaurantInstance : ecosystem.getRestaurantDirectory().getRestaurantList()) {
+//            if (userAccount.getUsername().equals(restaurantInstance.getUsername())) {
+//                restaurant =  restaurantInstance;
+//            }
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,55 +60,53 @@ public class ManageRestaurantInformationJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblRestaurantInfo = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        editRestaurantName = new javax.swing.JTextField();
-        btnUpdateRestaurantName = new javax.swing.JButton();
+        restaurantName = new javax.swing.JTextField();
+        updateButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        restaurantAddress = new javax.swing.JTextField();
+        restaurantPhone = new javax.swing.JTextField();
+        confirmButton = new javax.swing.JButton();
+        resetButton = new javax.swing.JButton();
 
-        tblRestaurantInfo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        setBackground(new java.awt.Color(240, 178, 62));
 
-            },
-            new String [] {
-                "restaurant name"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblRestaurantInfo);
-
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MANAGE RESTAURANT INFORMATION");
 
-        btnBack.setText("<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Restaurant name");
+
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
+                updateButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("restaurant name");
+        jLabel3.setText("Restaurant Address");
 
-        btnUpdateRestaurantName.setText("UpdateRestaurantName");
-        btnUpdateRestaurantName.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setText("Restaurant Phone");
+
+        restaurantPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateRestaurantNameActionPerformed(evt);
+                restaurantPhoneActionPerformed(evt);
+            }
+        });
+
+        confirmButton.setText("Confirm");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
+
+        resetButton.setText("Reset");
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
             }
         });
 
@@ -101,107 +117,125 @@ public class ManageRestaurantInformationJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jLabel2)
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUpdateRestaurantName)
-                            .addComponent(editRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(updateButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(confirmButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(resetButton))
+                            .addComponent(restaurantPhone)
+                            .addComponent(restaurantAddress)
+                            .addComponent(restaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(18, 18, 18)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(editRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUpdateRestaurantName)
-                .addContainerGap(250, Short.MAX_VALUE))
+                    .addComponent(restaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(restaurantAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(restaurantPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton)
+                    .addComponent(confirmButton)
+                    .addComponent(resetButton))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
+        confirmButton.setVisible(true);
+       resetButton.setVisible(true);
+       setVisibleEditable(true);
+        
+        //populateTable();
+    }//GEN-LAST:event_updateButtonActionPerformed
 
-    private void btnUpdateRestaurantNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateRestaurantNameActionPerformed
+    private void restaurantPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurantPhoneActionPerformed
         // TODO add your handling code here:
-             System.out.println("Shivi 1");
-           int selectedRow = tblRestaurantInfo.getSelectedRow();
-        if (selectedRow >= 0) {
-            System.out.println("xyz" + selectedRow);
-            System.out.println("Shivi 2");
-            Restaurant restaurant = (Restaurant) tblRestaurantInfo.getValueAt(selectedRow, 0);
-            System.out.println("item : "+ restaurant);
-            //System.out.println(itemName.getName());
-            restaurant.setName(editRestaurantName.getText());
-           
-             populateTable();
-             editRestaurantName.setText("");
-       
-            
-       
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a row");
-        }
-    }//GEN-LAST:event_btnUpdateRestaurantNameActionPerformed
-     private void  populateTable(){
-          // Menu itemList = ecosystem.getItemList();
-        DefaultTableModel model = (DefaultTableModel) tblRestaurantInfo.getModel();
-        model.setRowCount(0);
-        for (Restaurant  restaurant : ecosystem.getRestaurantDirectory().getRestaurantList()) {
-                    Object[] row = new Object[1];
-                    row[0] = restaurant;
-                  
-                    model.addRow(row);
-            }
+    }//GEN-LAST:event_restaurantPhoneActionPerformed
+
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        // TODO add your handling code here:
+        restaurant.setName(restaurantName.getText());
+        restaurant.setAddress(restaurantAddress.getText());
+        restaurant.setPhone(restaurantPhone.getText());
+        setVisibleEditable(false);
+    }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        // TODO add your handling code here:
+          restaurantName.setText("");
+        restaurantAddress.setText("");
+        restaurantPhone.setText("");
+        
+    }//GEN-LAST:event_resetButtonActionPerformed
+    private void setVisibleEditable(boolean value) {
+        restaurantName.setEditable(value);
+        restaurantAddress.setEditable(value);
+        restaurantPhone.setEditable(value);
+       restaurantName.setEnabled(value);
+       restaurantAddress.setEnabled(value);
+       restaurantPhone.setEnabled(value);
+        
     }
-     
-      private void display(Restaurant restaurant){
+
+    private void display(Restaurant restaurant) {
         System.out.println("Shivi");
-        editRestaurantName.setText(restaurant.getName());
-  
+        setVisibleEditable(false);
+        restaurantName.setText(restaurant.getName());
+        restaurantAddress.setText(restaurant.getAddress());
+        restaurantPhone.setText(restaurant.getPhone());
+        
+    }
 
-    }
- private void initListners() {
-       tblRestaurantInfo.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-        public void valueChanged(ListSelectionEvent event) {
-           int selectedRow = tblRestaurantInfo.getSelectedRow();
-             if (selectedRow >= 0) {
-                 Restaurant restaurant = (Restaurant) tblRestaurantInfo.getValueAt(selectedRow, 0);
-                 if(restaurant!=null){
-                     display(restaurant);
-                 }
-             }
-        }
-    });
-    }
+//    private void initListners() {
+//        tblRestaurantInfo.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//            public void valueChanged(ListSelectionEvent event) {
+//                int selectedRow = tblRestaurantInfo.getSelectedRow();
+//                if (selectedRow >= 0) {
+//                    Restaurant restaurant = (Restaurant) tblRestaurantInfo.getValueAt(selectedRow, 0);
+//                    if (restaurant != null) {
+//                        display(restaurant);
+//                    }
+//                }
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnUpdateRestaurantName;
-    private javax.swing.JTextField editRestaurantName;
+    private javax.swing.JButton confirmButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblRestaurantInfo;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton resetButton;
+    private javax.swing.JTextField restaurantAddress;
+    private javax.swing.JTextField restaurantName;
+    private javax.swing.JTextField restaurantPhone;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    
 }

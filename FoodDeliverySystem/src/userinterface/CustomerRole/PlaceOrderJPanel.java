@@ -6,7 +6,6 @@ package userinterface.CustomerRole;
 
 import Business.Customer.Customer;
 import Business.EcoSystem;
-import Business.Organization;
 import Business.Restaurant.Item;
 import Business.Restaurant.Menu;
 import Business.Restaurant.Restaurant;
@@ -16,21 +15,14 @@ import Business.WorkQueue.ItemWithQuantity;
 import Business.WorkQueue.OrderWorkRequest;
 
 import java.awt.CardLayout;
-import java.awt.Component;
-import java.awt.HeadlessException;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 
 /**
  *
@@ -69,6 +61,7 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             index = 0;
             populateMenu();
         }
+        totalPrice.setEditable(false);
 
     }
 
@@ -119,10 +112,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
                     Item item = (Item) tblOrder.getValueAt(selectedRow, 0);
                     if (item != null) {
                         String response = JOptionPane.showInputDialog("Please provide Quantity");
-                        try{
+                        try {
                             quantity = Integer.parseInt(response);
-                        }catch(NumberFormatException e){
-                            
+                        } catch (NumberFormatException e) {
+
                         }
                         if (quantity != 0) {
                             ItemWithQuantity itemWithQuantity = new ItemWithQuantity(item, quantity);
@@ -136,11 +129,10 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             }
         });
     }
-    
-    
-     private void populateItemsWithQuantityTable() {
+
+    private void populateItemsWithQuantityTable() {
         double total = 0.0;
-        cartTable.setRowCount(0);   
+        cartTable.setRowCount(0);
         for (ItemWithQuantity itemWithQuantity : itemsWithQuantityList) {
             Object[] row = new Object[cartTable.getColumnCount()];
             row[0] = itemWithQuantity;
@@ -150,35 +142,37 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             cartTable.addRow(row);
         }
         totalPrice.setText(total + "");
-     }
-     
-     
-     private void createOrder(){
-         if(itemsWithQuantityList.isEmpty()){
-             JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
-         }else{
-            OrderWorkRequest orderWorkRequest = new OrderWorkRequest(); 
+    }
+
+    private boolean createOrder() {
+
+        if (itemsWithQuantityList.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
+            return false;
+        } else {
+            OrderWorkRequest orderWorkRequest = new OrderWorkRequest();
             orderWorkRequest.setItemsWithQuatityList(itemsWithQuantityList);
             orderWorkRequest.setMessage(message.getText());
-            if(customer != null){
+            if (customer != null) {
                 orderWorkRequest.setCustomer(customer);
-            }else{
+            } else {
                 System.out.println("Customer is null");
-                return;
+                return false;
             }
             Restaurant restaurant = resturantDirectory.getRestaurantList().get(index);
-            if(restaurant != null){
+            if (restaurant != null) {
                 orderWorkRequest.setRestaurant(restaurant);
-            }else{
+            } else {
                 System.out.println("Restaurant is null");
-                return;
+                return false;
             }
             orderWorkRequest.setRequestDate(new Date());
             orderWorkRequest.setStatus("Ordered");
             ecosystem.getWorkQueue().addWorkRequest(orderWorkRequest);
-          
-         }
-     }
+            return true;
+
+        }
+    }
 
 //    private void createAddToCartButton(){
 //        ButtonColumn addToCartButton = new ButtonColumn("Add to Cart");
@@ -215,9 +209,6 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         requestTestJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         message = new javax.swing.JTextField();
-        backJButton = new javax.swing.JButton();
-        valueLabel = new javax.swing.JLabel();
-        enterpriseLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrder = new javax.swing.JTable();
@@ -228,7 +219,9 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         totalPrice = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(240, 178, 62));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         requestTestJButton.setText("Request Order");
@@ -242,21 +235,6 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
         jLabel1.setText("Message");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 560, -1, -1));
         add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, 89, -1));
-
-        backJButton.setText("<<Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 130, -1));
-
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 120, 30));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Menu");
@@ -345,28 +323,24 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
             }
         });
         add(totalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, 150, 30));
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("PLACE ORDER");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 740, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        createOrder();
-        JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
-         OrderStatusJPanel orderStatusJPanel = new OrderStatusJPanel(userProcessContainer, ecosystem,customer);
-         userProcessContainer.add("OrderStatusJPanel", orderStatusJPanel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        if (createOrder()) {
+            JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
+            OrderStatusJPanel orderStatusJPanel = new OrderStatusJPanel(userProcessContainer, ecosystem, customer);
+            userProcessContainer.add("OrderStatusJPanel", orderStatusJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+
+
     }//GEN-LAST:event_requestTestJButtonActionPerformed
-
-    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        CustomerAreaJPanel dwjp = (CustomerAreaJPanel) component;
-        dwjp.populateRequestTable();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-
-    }//GEN-LAST:event_backJButtonActionPerformed
 
     private void restaurantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurantComboBoxActionPerformed
         index = restaurantComboBox.getSelectedIndex();
@@ -381,14 +355,13 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_totalPriceActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backJButton;
     private javax.swing.JScrollPane cartScrollPane;
-    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel enterpriseLabel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField message;
     private javax.swing.JButton requestTestJButton;
@@ -396,6 +369,5 @@ public class PlaceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tblCart;
     private javax.swing.JTable tblOrder;
     private javax.swing.JTextField totalPrice;
-    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

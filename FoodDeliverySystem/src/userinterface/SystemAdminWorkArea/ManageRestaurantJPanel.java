@@ -59,18 +59,19 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         createPassword = new javax.swing.JTextField();
         createUserName = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         restaurantAddress = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         restaurantPhone = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(240, 178, 62));
 
         tblRestaurantAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "restaurant name", "username", "password"
+                "Restaurant name", "Username", "Password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -83,12 +84,13 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblRestaurantAdmin);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Restaurant Admin");
 
-        jLabel2.setText("username");
+        jLabel2.setText("Username");
 
-        jLabel3.setText("password");
+        jLabel3.setText("Password");
 
         jLabel5.setText("Restaurant Name");
 
@@ -119,13 +121,6 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setText("<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Restaurant Address");
 
         jLabel6.setText("Restaurant Phone");
@@ -141,9 +136,6 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -170,8 +162,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnBack)
-                .addGap(7, 7, 7)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +191,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                     .addComponent(btnCreate)
                     .addComponent(btnModify)
                     .addComponent(btnDelete))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,7 +208,9 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         }
 
         if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(createUserName.getText())) {
-            Restaurant restaurant = new Restaurant(createUserName.getText(), createPassword.getText(), createRestaurantName.getText(), restaurantAddress.getText(),restaurantPhone.getText());
+            Restaurant restaurant = new Restaurant(createUserName.getText(),
+                    createPassword.getText(), createRestaurantName.getText(),
+                    restaurantAddress.getText(),restaurantPhone.getText());
             ecosystem.getUserAccountDirectory().addUserAccount(restaurant);
             ecosystem.getRestaurantDirectory().addRestaurant(restaurant);
             populateTable();
@@ -231,13 +224,6 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Username " + createUserName.getText() + " already exists !!!, Please try a new one");
         }
     }//GEN-LAST:event_btnCreateActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         // TODO add your handling code here:
@@ -295,9 +281,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             row[0] = restaurant;
             row[1] = restaurant.getUsername();
             row[2] = restaurant.getPassword();
-
             model.addRow(row);
-
         }
     }
 
@@ -321,12 +305,13 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         createUserName.setText(restaurant.getUsername());
         createPassword.setText(restaurant.getPassword());
         createRestaurantName.setText(restaurant.getName());
+        restaurantAddress.setText(restaurant.getAddress());
+        restaurantPhone.setText(restaurant.getPhone());
         
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;

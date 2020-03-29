@@ -13,6 +13,7 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -53,7 +54,7 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
         status.setText(workRequest.getStatus());
         message.setText(workRequest.getMessage());
         
-            cartTable.setRowCount(0);   
+        cartTable.setRowCount(0);   
         for (ItemWithQuantity itemWithQuantity : workRequest.getItemsWithQuatityList()) {
             Object[] row = new Object[cartTable.getColumnCount()];
             row[0] = itemWithQuantity;
@@ -96,6 +97,8 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
         customerFeedbackLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         customerFeedbackField = new javax.swing.JTextArea();
+
+        setBackground(new java.awt.Color(240, 178, 62));
 
         jLabel1.setText("Restaurant Name");
 
@@ -142,6 +145,7 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
 
         message.setText("<value>");
 
+        jLabel11.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("ORDER DETAILS");
 
@@ -162,6 +166,8 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+
+        customerFeedBackPanel.setBackground(new java.awt.Color(240, 178, 62));
 
         customerFeedbackLabel.setText("Customer FeedBack");
 
@@ -281,6 +287,7 @@ public class OrderDetailsJPanel extends javax.swing.JPanel {
             workRequest.setCustomerFeedback(feedback);
             setVisibleEditable();
         }
+        JOptionPane.showMessageDialog(null, "Feedback Submitted Successfully !!!");
     }//GEN-LAST:event_submitFeedbackButtonActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
