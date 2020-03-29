@@ -6,15 +6,11 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
-import Business.Restaurant.Item;
-import Business.Restaurant.Menu;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.ItemWithQuantity;
 import Business.WorkQueue.OrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -92,7 +88,6 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomerOrderStatus = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,14 +123,6 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 680, 140));
 
-        btnBack.setText("<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         btnRefresh.setText("Refresh");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,21 +132,12 @@ public class OrderStatusJPanel extends javax.swing.JPanel {
         add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-            CustomerAreaJPanel customerAreaJPanel = new CustomerAreaJPanel(userProcessContainer,account,ecosystem );
-            userProcessContainer.add("CustomerAreaJPanel", customerAreaJPanel);
-            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

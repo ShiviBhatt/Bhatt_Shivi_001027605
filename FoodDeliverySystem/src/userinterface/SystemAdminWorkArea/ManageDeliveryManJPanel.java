@@ -58,16 +58,19 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
         createName = new javax.swing.JTextField();
         createPassword = new javax.swing.JTextField();
         createUserName = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         createPhone = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(240, 178, 62));
+
+        tblDeliveryMan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tblDeliveryMan.setForeground(new java.awt.Color(56, 90, 174));
         tblDeliveryMan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "name", "phone", "username", "password"
+                "NAME", "PHONE", "USERNAME", "PASSWORD"
             }
         ) {
             Class[] types = new Class [] {
@@ -85,16 +88,24 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblDeliveryMan.setGridColor(new java.awt.Color(56, 90, 174));
+        tblDeliveryMan.setIntercellSpacing(new java.awt.Dimension(5, 5));
+        tblDeliveryMan.setSelectionBackground(new java.awt.Color(240, 178, 62));
         jScrollPane1.setViewportView(tblDeliveryMan);
+        if (tblDeliveryMan.getColumnModel().getColumnCount() > 0) {
+            tblDeliveryMan.getColumnModel().getColumn(1).setResizable(false);
+            tblDeliveryMan.getColumnModel().getColumn(3).setResizable(false);
+        }
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Delivery Man");
 
-        jLabel2.setText("username");
+        jLabel2.setText("Username");
 
-        jLabel3.setText("password");
+        jLabel3.setText("Password");
 
-        jLabel4.setText("name");
+        jLabel4.setText("Name");
 
         btnDeliveryMan.setText("Create");
         btnDeliveryMan.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +114,7 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnModify.setText("modify");
+        btnModify.setText("Modify");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyActionPerformed(evt);
@@ -123,14 +134,7 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setText("<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("phone");
+        jLabel5.setText("Phone");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -162,16 +166,13 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8))
-                            .addComponent(createPhone)))
-                    .addComponent(btnBack))
+                            .addComponent(createPhone))))
                 .addContainerGap(204, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(1, 1, 1)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,20 +197,13 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
                     .addComponent(btnDeliveryMan)
                     .addComponent(btnModify)
                     .addComponent(btnDelete))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_createUserNameActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryManActionPerformed
         // TODO add your handling code here:
@@ -318,7 +312,6 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDeliveryMan;
     private javax.swing.JButton btnModify;
